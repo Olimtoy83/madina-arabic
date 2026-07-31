@@ -1,9 +1,3 @@
-const tg = window.Telegram.WebApp;
-
-tg.ready();
-
-tg.expand();
-
 let currentWord = 0;
 
 const arabicWord = document.getElementById("arabic-word");
