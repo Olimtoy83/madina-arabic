@@ -1,9 +1,14 @@
-alert("Файл telegram.js загрузился");
+const tg = window.Telegram.WebApp;
 
-console.log("telegram.js работает");
+tg.ready();
+tg.expand();
 
-if (window.Telegram) {
-  alert("Telegram SDK найден");
+console.log("Telegram объект:", tg);
+console.log("initData:", tg.initData);
+console.log("initDataUnsafe:", tg.initDataUnsafe);
+
+if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+  alert("Здравствуйте, " + tg.initDataUnsafe.user.first_name);
 } else {
-  alert("Telegram SDK НЕ найден");
+  alert("Mini App открыт без данных пользователя.");
 }
