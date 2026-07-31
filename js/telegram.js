@@ -3,12 +3,8 @@ const tg = window.Telegram.WebApp;
 tg.ready();
 tg.expand();
 
-console.log("Telegram объект:", tg);
-console.log("initData:", tg.initData);
-console.log("initDataUnsafe:", tg.initDataUnsafe);
+const user = tg.initDataUnsafe.user;
 
-if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-  alert("Здравствуйте, " + tg.initDataUnsafe.user.first_name);
-} else {
-  alert("Mini App открыт без данных пользователя.");
+if (user) {
+  console.log("Пользователь:", user.first_name);
 }
