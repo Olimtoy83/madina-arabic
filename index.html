@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Madina Arabic</title>
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
   <div class="app">
@@ -15,7 +15,7 @@
     <main>
       <section id="home-screen" class="screen">
         <p class="eyebrow">Учимся понемногу каждый день</p>
-        <h1 id="greeting">Ассаляму алейкум!</h1>
+        <h1 id="greeting">Ассаляму алейкум<span id="greeting-name" dir="auto" hidden></span></h1>
         <p class="intro">Продолжайте знакомство с арабскими словами в своём темпе.</p>
         <section class="summary-card" aria-label="Общий прогресс">
           <div class="summary-heading"><span>Общий прогресс</span><strong id="overall-progress">0 / 12 слов</strong></div>
@@ -32,16 +32,17 @@
         <button class="back-button" id="back-to-home" type="button">← Все уроки</button>
         <div class="lesson-meta"><p id="lesson-kicker" class="eyebrow"></p><h1 id="lesson-title"></h1><p id="lesson-description" class="intro"></p></div>
         <section class="lesson-progress" aria-label="Прогресс урока"><div class="summary-heading"><span>Прогресс урока</span><strong id="lesson-progress-count"></strong></div><div class="progress-bar" aria-hidden="true"><div class="progress-fill" id="lesson-progress-fill"></div></div></section>
-        <section class="word-card" id="word-card"><p id="word-position" class="word-position"></p><h2 id="arabic-word" lang="ar" dir="rtl"></h2><p id="translation"></p><button class="soft-button" id="start-builder" type="button">🧩 Собрать слово</button></section>
+        <section class="word-card" id="word-card"><p id="word-position" class="word-position"></p><h2 id="arabic-word" lang="ar" dir="rtl"></h2><p id="translation"></p><div class="pronunciation"><button class="audio-button" id="play-audio" type="button" aria-describedby="audio-status"><span aria-hidden="true">▶</span> <span id="audio-button-label">Прослушать произношение</span></button><p class="audio-status" id="audio-status" role="status"></p></div><button class="soft-button" id="start-builder" type="button">🧩 Собрать слово</button></section>
         <section class="builder-card" id="builder-card" hidden aria-live="polite"><p class="eyebrow">Проверь себя</p><h2>Собери слово</h2><div class="answer-slots" id="answer-slots" aria-label="Ваш ответ"></div><div class="letters" id="letters" aria-label="Буквы для выбора"></div><p class="builder-feedback" id="builder-feedback"></p><div class="builder-actions"><button class="secondary-button" id="reset-answer" type="button">Начать заново</button><button class="primary-button" id="check-answer" type="button" disabled>Проверить</button></div></section>
         <section class="learning-actions" id="learning-actions"><button class="primary-button" id="next-word" type="button">✓ Я знаю</button><button class="secondary-button" id="repeat-word" type="button">Повторить</button></section>
       </section>
     </main>
   </div>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script src="js/data.js?v=4"></script>
-  <script src="js/telegram.js?v=4"></script>
-  <script src="js/storage.js?v=4"></script>
-  <script src="js/app.js?v=4"></script>
+  <script src="js/data.js?v=5"></script>
+  <script src="js/telegram.js?v=5"></script>
+  <script src="js/storage.js?v=5"></script>
+  <script src="js/audio.js?v=1"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>

@@ -17,6 +17,11 @@ const lettersContainer = document.getElementById("letters");
 const answerSlots = document.getElementById("answer-slots");
 const feedback = document.getElementById("builder-feedback");
 const checkAnswerButton = document.getElementById("check-answer");
+const playAudioButton = document.getElementById("play-audio");
+const audioButtonLabel = document.getElementById("audio-button-label");
+const audioStatus = document.getElementById("audio-status");
+const greetingName = document.getElementById("greeting-name");
+const audioController = new AudioPlaybackController(setAudioState);
 
 function getCurrentLesson() { return lessons.find((lesson) => lesson.id === progress.currentLessonId) || lessons[0]; }
 function getCurrentWord() { const lesson = getCurrentLesson(); if (progress.currentWord >= lesson.words.length) progress.currentWord = 0; return lesson.words[progress.currentWord]; }
@@ -24,9 +29,45 @@ function getMasteredWords(words) { return words.filter((word) => progress.learne
 function showScreen(screen) { homeScreen.hidden = screen !== "home"; lessonScreen.hidden = screen !== "lesson"; }
 function renderHeader() { streakCount.textContent = progress.streak; xpCount.textContent = progress.xp; }
 
+function setAudioState(state) {
+  const word = getCurrentWord();
+  const hasAudio = Boolean(word.audio && word.audio.src);
+  audioStatus.className = "audio-status";
+
+  if (!hasAudio || state === "missing") {
+    playAudioButton.disabled = true;
+    audioButtonLabel.textContent = "Произношение скоро";
+    audioStatus.textContent = "Проверенная запись для этого слова ещё не добавлена.";
+    return;
+  }
+
+  playAudioButton.disabled = state === "loading";
+  if (state === "loading") {
+    audioButtonLabel.textContent = "Загрузка…";
+    audioStatus.textContent = "";
+  } else if (state === "playing") {
+    audioButtonLabel.textContent = "Повторить произношение";
+    audioStatus.textContent = "Воспроизводится запись.";
+  } else if (state === "error") {
+    audioButtonLabel.textContent = "Попробовать ещё раз";
+    audioStatus.textContent = "Не удалось загрузить запись. Попробуйте ещё раз позже.";
+    audioStatus.classList.add("is-error");
+  } else {
+    audioButtonLabel.textContent = "Прослушать произношение";
+    audioStatus.textContent = "";
+  }
+}
+
+function renderAudioControl(word) {
+  audioController.stop();
+  setAudioState(word.audio && word.audio.src ? "idle" : "missing");
+}
+
 function renderHome() {
+  audioController.stop();
   const user = getTelegramUser();
-  document.getElementById("greeting").textContent = user && user.first_name ? `Ассаляму алейкум, ${user.first_name}!` : "Ассаляму алейкум!";
+  greetingName.hidden = !user || !user.first_name;
+  greetingName.textContent = user && user.first_name ? `, ${user.first_name}!` : "";
   const mastered = getMasteredWords(allWords);
   document.getElementById("overall-progress").textContent = `${mastered} / ${allWords.length} слов`;
   document.getElementById("overall-progress-fill").style.width = `${(mastered / allWords.length) * 100}%`;
@@ -60,6 +101,7 @@ function renderLesson() {
   lessonProgressCount.textContent = `${mastered} / ${lesson.words.length} слов`; lessonProgressFill.style.width = `${(mastered / lesson.words.length) * 100}%`;
   document.getElementById("word-position").textContent = `Слово ${progress.currentWord + 1} из ${lesson.words.length}`;
   arabicWord.textContent = word.arabic; translation.textContent = word.translation;
+  renderAudioControl(word);
   builderCard.hidden = true; wordCard.hidden = false; document.getElementById("learning-actions").hidden = false; renderHeader();
 }
 
@@ -99,5 +141,6 @@ document.getElementById("next-word").addEventListener("click", markCurrentWordKn
 document.getElementById("repeat-word").addEventListener("click", openBuilder);
 document.getElementById("start-builder").addEventListener("click", openBuilder);
 document.getElementById("reset-answer").addEventListener("click", renderBuilder);
+playAudioButton.addEventListener("click", () => audioController.play(getCurrentWord().audio && getCurrentWord().audio.src));
 checkAnswerButton.addEventListener("click", checkAnswer);
 renderHome();
