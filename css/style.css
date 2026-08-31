@@ -1,6 +1,6 @@
 :root { --ink:#19332a; --muted:#62756d; --green:#167452; --green-dark:#10563d; --green-soft:#e8f3ed; --line:#dce8e1; --surface:#fff; --background:#f3f7f4; --error:#a84444; --focus:#1b82a9; }
 * { box-sizing:border-box; }
-body { min-width:320px; margin:0; color:var(--ink); background:var(--background); font-family:Arial,sans-serif; }
+body { margin:0; color:var(--ink); background:var(--background); font-family:Arial,sans-serif; }
 button { font:inherit; } button:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
 .app { width:min(100%,480px); min-height:100vh; margin:0 auto; padding:20px 16px 32px; background:var(--surface); }
 .app-header,.header-stats,.summary-heading,.section-heading,.builder-actions,.learning-actions { display:flex; align-items:center; }.app-header { justify-content:space-between; margin-bottom:30px; }.brand { padding:0; color:var(--green-dark); border:0; background:transparent; font-weight:800; font-size:18px; cursor:pointer; }.header-stats { gap:10px; color:var(--muted); font-size:13px; }.header-stats span,.summary-heading strong { white-space:nowrap; }.header-stats strong { color:var(--ink); }
