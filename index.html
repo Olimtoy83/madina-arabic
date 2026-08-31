@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Madina Arabic</title>
 
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 
 <body>
@@ -22,11 +22,11 @@
       <div class="header-info">
 
         <div class="streak">
-          🔥 0
+          🔥 <span id="streak-count">1</span>
         </div>
 
-        <div class="day">
-          Day 1
+        <div class="day" id="day-count">
+          Серия 1 дн.
         </div>
 
       </div>
@@ -36,7 +36,7 @@
     <section class="progress">
 
       <div class="progress-text">
-        <span id="progress-count">1 / 5</span>
+        <span id="progress-count">Освоено 0 / 5</span>
       </div>
 
       <div class="progress-bar">
@@ -55,30 +55,38 @@
 
         <p id="translation"></p>
 
-        <button class="audio-btn" id="start-builder">
+        <button class="audio-btn" id="start-builder" type="button">
           🧩 Начать упражнение
         </button>
 
       </section>
 
-      <section class="builder-card" id="builder-card" hidden>
+      <section class="builder-card" id="builder-card" hidden aria-live="polite">
 
-        <h2>🧩 Собери слово</h2>
+        <p class="eyebrow">Проверь себя</p>
+        <h2>Собери слово</h2>
 
         <div class="answer-slots"></div>
 
         <div class="letters"></div>
 
+        <p class="builder-feedback" id="builder-feedback"></p>
+
+        <div class="builder-actions">
+          <button class="secondary-btn" id="reset-answer" type="button">Начать заново</button>
+          <button class="primary-btn" id="check-answer" type="button" disabled>Проверить</button>
+        </div>
+
       </section>
 
       <section class="actions">
 
-        <button class="know-btn" id="next-word">
+        <button class="know-btn" id="next-word" type="button">
           ✅ Я знаю
         </button>
 
-        <button class="repeat-btn">
-          🔄 Повторить
+        <button class="repeat-btn" id="repeat-word" type="button">
+          🧩 Собрать слово
         </button>
 
       </section>
@@ -91,6 +99,7 @@
 
   <script src="js/data.js"></script>
   <script src="js/telegram.js"></script>
+  <script src="js/storage.js"></script>
   <script src="js/app.js"></script>
 
 </body>
