@@ -1,10 +1,7 @@
-const tg = window.Telegram.WebApp;
-
-tg.ready();
-tg.expand();
-
-const user = tg.initDataUnsafe.user;
-
-if (user) {
-  console.log("Пользователь:", user.first_name);
+function getTelegramUser() {
+  const tg = window.Telegram && window.Telegram.WebApp;
+  if (!tg) return null;
+  tg.ready();
+  tg.expand();
+  return tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : null;
 }
