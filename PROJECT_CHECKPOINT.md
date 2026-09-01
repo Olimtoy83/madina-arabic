@@ -4,10 +4,10 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- HEAD: `46011d84d5d8fcfc15cbde47761a9be0f27f309e`
+- HEAD: `5ce86c41b2681407d91163d4f8b291a11e8dbace`
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
-- Latest completed stage: `feat(arabic): add lessons 8-11`
+- Latest completed stage: `style(arabic): compact mobile language switcher`
 
 ## Completed functionality
 
@@ -20,6 +20,7 @@
 - Explicit lesson completion flow: completed lessons show a completion state, progress continues to the next incomplete lesson, and a final state is shown after all lessons are complete.
 - Completed lessons remain available from the lesson list for review.
 - Mobile reflow improvements for the dashboard, cards, buttons, and language controls; normal iPhone dashboard and lesson screens were visually verified in Russian and Uzbek.
+- Compact Mobile Header Polish completed. The previous `max-width:480px` rule gave `.language-switcher` and its buttons `flex: 1 1 100%` / `flex: 1 1 8rem`, forcing the selector onto a full-width row. The selector, its buttons, brand, and stats now use content-sized flex bases on mobile; the header wraps naturally only when space is insufficient, without horizontal-overflow masking or zoom restrictions.
 - Real iPhone Telegram WebView investigation completed. In the normal state, `documentElement.clientWidth`, document `scrollWidth`, and body `scrollWidth` were all `430px`, with `visualViewport.width=430` and `scale=1`. In the problem-looking state, document and body widths remained `430px`, while `visualViewport.width` became approximately `301px` at `scale≈1.4264`.
 
 ## Architecture
@@ -36,6 +37,7 @@
 
 - Current assets: `assets/audio/words/word-001.mp3` through `word-052.mp3` (52 files, one per learning-unit ID). The original 12 verified local MP3 assets (`word-001.mp3`–`word-012.mp3`) remain unchanged. `js/data.js` derives each source as `assets/audio/words/word-0NN.mp3`.
 - Lessons 8–11 use IDs `33`–`52` and verified local assets `word-033.mp3`–`word-052.mp3`. Validation confirmed 11 lessons, 52 units, sequential unique IDs `1`–`52`, correct audio-path mapping, non-empty expected MP3 files, JavaScript syntax, and `git diff --check`.
+- Header Polish validation confirmed JavaScript syntax, 11 lessons / 52 units, 52 non-empty local MP3 files, no forced full-width mobile language-switcher rule, no `overflow-x: hidden` / `clip`, no zoom restriction, and `git diff --check`.
 - Confirmed source: Google Cloud Text-to-Speech via Google Cloud Console, project `project-fd21fcf5-9053-4777-94c`, API `texttospeech.googleapis.com`.
 - Use language `ar-XA`, voice `ar-XA-Wavenet-B`, and MP3 output. Send the exact Arabic text stored in `js/data.js`, including its diacritics; do not change spelling or punctuation for synthesis.
 - In every new Cloud Shell session, initialise a fresh project and token before calling the REST API:
