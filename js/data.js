@@ -19,6 +19,18 @@ const lessons = [
   ] },
   { id: "home-and-rooms", titles: { ru: "Дом и комнаты", uz: "Uy va xonalar" }, descriptions: { ru: "Слова для описания дома и предметов в нём.", uz: "Uy va undagi buyumlarni tasvirlash uchun so‘zlar." }, words: [
     [28,"غُرْفَةٌ","Комната","Xona",["غ","ر","ف","ة"],true], [29,"مَطْبَخٌ","Кухня","Oshxona",["م","ط","ب","خ"],true], [30,"نَافِذَةٌ","Окно","Deraza",["ن","ا","ف","ذ","ة"],true], [31,"كُرْسِيٌّ","Стул","Stul",["ك","ر","س","ي"],true], [32,"سَرِيرٌ","Кровать","Karavot",["س","ر","ي","ر"],true]
+  ] },
+  { id: "food-and-drinks", titles: { ru: "Еда и напитки", uz: "Ovqat va ichimliklar" }, descriptions: { ru: "Повседневные слова для еды и напитков.", uz: "Ovqat va ichimliklar uchun kundalik so‘zlar." }, words: [
+    [33,"مَاءٌ","Вода","Suv",["م","ا","ء"]], [34,"خُبْزٌ","Хлеб","Non",["خ","ب","ز"]], [35,"حَلِيبٌ","Молоко","Sut",["ح","ل","ي","ب"]], [36,"شَايٌ","Чай","Choy",["ش","ا","ي"]], [37,"طَعَامٌ","Еда","Ovqat",["ط","ع","ا","م"]]
+  ] },
+  { id: "family", titles: { ru: "Семья", uz: "Oila" }, descriptions: { ru: "Слова о семье и близких людях.", uz: "Oila va yaqin insonlar haqidagi so‘zlar." }, words: [
+    [38,"أَبٌ","Отец","Ota",["أ","ب"]], [39,"أُمٌّ","Мать","Ona",["أ","م"]], [40,"أَخٌ","Брат","Aka / uka",["أ","خ"]], [41,"أُخْتٌ","Сестра","Opa / singil",["أ","خ","ت"]], [42,"أُسْرَةٌ","Семья","Oila",["أ","س","ر","ة"]]
+  ] },
+  { id: "clothing", titles: { ru: "Одежда", uz: "Kiyimlar" }, descriptions: { ru: "Слова для одежды и головных уборов.", uz: "Kiyim va bosh kiyimlar uchun so‘zlar." }, words: [
+    [43,"ثَوْبٌ","Одежда / тоб","Kiyim / to‘n",["ث","و","ب"]], [44,"قَمِيصٌ","Рубашка","Ko‘ylak",["ق","م","ي","ص"]], [45,"حِذَاءٌ","Обувь","Oyoq kiyim",["ح","ذ","ا","ء"]], [46,"سِرْوَالٌ","Брюки","Shim",["س","ر","و","ا","ل"]], [47,"قُبَّعَةٌ","Головной убор / шапка","Bosh kiyim",["ق","ب","ع","ة"]]
+  ] },
+  { id: "places-and-city", titles: { ru: "Места и город", uz: "Joylar va shahar" }, descriptions: { ru: "Полезные места в городе.", uz: "Shahardagi foydali joylar." }, words: [
+    [48,"مَسْجِدٌ","Мечеть","Masjid",["م","س","ج","د"]], [49,"سُوقٌ","Рынок","Bozor",["س","و","ق"]], [50,"مَطْعَمٌ","Ресторан","Restoran",["م","ط","ع","م"]], [51,"مُسْتَشْفًى","Больница","Kasalxona",["م","س","ت","ش","ف","ى"]], [52,"مَدْرَسَةٌ","Школа","Maktab",["م","د","ر","س","ة"]]
   ] }
 ].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
