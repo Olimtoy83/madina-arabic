@@ -13,6 +13,9 @@ const lessons = [
   ] },
   { id: "introductions", titles: { ru: "Знакомство", uz: "Tanishuv" }, descriptions: { ru: "Слова, чтобы представиться и спросить имя.", uz: "O‘zingizni tanishtirish va ism so‘rash uchun so‘zlar." }, words: [
     [17,"أَنَا","Я","Men",["أ","ن","ا"],false], [18,"أَنْتَ","Ты (м.)","Sen",["أ","ن","ت"],false], [19,"مَنْ","Кто?","Kim?",["م","ن"],false], [20,"اِسْمِي","Моё имя","Mening ismim",["ا","س","م","ي"],false], [21,"اِسْمٌ","Имя","Ism",["ا","س","م"],false], [22,"صَدِيقٌ","Друг","Do‘st",["ص","د","ي","ق"],false]
+  ] },
+  { id: "numbers-one-to-five", titles: { ru: "Числа 1–5", uz: "1–5 sonlari" }, descriptions: { ru: "Первые числа для счёта в повседневных ситуациях.", uz: "Kundalik holatlarda sanash uchun dastlabki sonlar." }, words: [
+    [23,"وَاحِدٌ","Один","Bir",["و","ا","ح","د"],false], [24,"اِثْنَانِ","Два","Ikki",["ا","ث","ن","ا","ن"],false], [25,"ثَلَاثَةٌ","Три","Uch",["ث","ل","ا","ث","ة"],false], [26,"أَرْبَعَةٌ","Четыре","To‘rt",["أ","ر","ب","ع","ة"],false], [27,"خَمْسَةٌ","Пять","Besh",["خ","م","س","ة"],false]
   ] }
 ].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
