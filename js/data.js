@@ -8,5 +8,5 @@ const lessons = [
   { id: "everyday-things", titles: { ru: "Вокруг нас", uz: "Atrofimizda" }, descriptions: { ru: "Ещё несколько слов для повседневной жизни.", uz: "Kundalik hayot uchun yana bir nechta so‘z." }, words: [
     [10,"مَاءٌ","Вода","Suv",["م","ا","ء"]], [11,"شَمْسٌ","Солнце","Quyosh",["ش","م","س"]], [12,"قَمَرٌ","Луна","Oy",["ق","م","ر"]]
   ] }
-].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters]) => ({ id, arabic, translations: { ru, uz }, letters, audio: { src: null, expectedPath: `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3` } })) }));
+].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: { src: path, expectedPath: path } }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
