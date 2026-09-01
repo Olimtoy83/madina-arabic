@@ -4,18 +4,18 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- HEAD: `05344bc8c3f546a327a85b45097a2d87d3d11c9b`
+- HEAD: `d0e21219dbf8f3fa99873e73df372eca0a84632c`
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
-- Latest completed stage: `feat(arabic): add introduction lesson`
+- Latest completed stage: `feat(arabic): add numbers lesson`
 
 ## Completed functionality
 
-- Static lesson dashboard with 5 lessons and 22 Arabic learning units, including Lesson 5, “Знакомство”.
+- Static lesson dashboard with 6 lessons and 27 Arabic learning units, including Lesson 6, “Числа 1–5”.
 - Russian and Uzbek interface and word translations.
 - Word-builder exercise, learning progress, XP, streak, attempts, and correct-answer tracking.
 - Browser-local persistence using `localStorage`.
-- Pronunciation playback for 12 verified local MP3 files; the 10 units in Lessons 4–5 intentionally show the localized “pronunciation soon” state until matching recordings are available.
+- Pronunciation playback for 12 verified local MP3 files; the 15 units in Lessons 4–6 intentionally show the localized “pronunciation soon” state until matching recordings are available.
 - Telegram WebApp SDK initialization with optional display of the Telegram user's first name.
 - Explicit lesson completion flow: completed lessons show a completion state, progress continues to the next incomplete lesson, and a final state is shown after all lessons are complete.
 - Completed lessons remain available from the lesson list for review.
@@ -48,9 +48,9 @@
 
 ## Next tasks
 
-- Review and approve the Lesson 6 “Числа 1–5” learning units before adding more curriculum content.
-- Source or verify matching local MP3 recordings before enabling pronunciation for words 13–22.
+- Review and approve the Lesson 7 “Дом и комнаты” learning units before adding more curriculum content.
+- Source or verify matching local MP3 recordings before enabling pronunciation for words 13–27.
 
 ## Next authorized stage
 
-**One bounded curriculum expansion, frontend only, after approval: Lesson 6 “Числа 1–5”.** Add exactly one practical numbers lesson that follows the existing `js/data.js` structure, preserves Russian and Uzbek translations and localStorage compatibility, and does not invent audio assets. Do not add backend, server, database, authentication, remote persistence, or deployment work without a separate authorization.
+**One bounded curriculum expansion, frontend only, after approval: Lesson 7 “Дом и комнаты”.** Add exactly one practical home-and-rooms lesson that follows the existing `js/data.js` structure, preserves Russian and Uzbek translations and localStorage compatibility, and does not invent audio assets. Do not add backend, server, database, authentication, remote persistence, or deployment work without a separate authorization.
