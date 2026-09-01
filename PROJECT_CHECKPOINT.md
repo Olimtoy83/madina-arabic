@@ -4,10 +4,10 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- HEAD: `aac2489a0751955521841b5ea3afc3c758eb9341`
+- HEAD: `4e01f98003cadf9112bbd434ffe094a2089a2393`
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
-- Latest completed stage: `feat(arabic): add home lesson and improve mobile reflow`
+- Latest completed stage: `feat(audio): add pronunciation for lessons 4-7`
 
 ## Completed functionality
 
@@ -15,7 +15,7 @@
 - Russian and Uzbek interface and word translations.
 - Word-builder exercise, learning progress, XP, streak, attempts, and correct-answer tracking.
 - Browser-local persistence using `localStorage`.
-- Pronunciation playback for 12 verified local MP3 files; the 20 units in Lessons 4–7 intentionally show the localized “pronunciation soon” state until matching recordings are available.
+- Audio Stage completed: pronunciation playback for all 32 learning units through verified local MP3 files. Every unit now exposes its local `audio.src` path; the localized “pronunciation soon” fallback is retained only for any future unit without a verified file.
 - Telegram WebApp SDK initialization with optional display of the Telegram user's first name.
 - Explicit lesson completion flow: completed lessons show a completion state, progress continues to the next incomplete lesson, and a final state is shown after all lessons are complete.
 - Completed lessons remain available from the lesson list for review.
@@ -30,6 +30,23 @@
 - Localization is implemented in `js/i18n.js` for Russian and Uzbek.
 - Audio playback is implemented in `js/audio.js`; audio assets are local under `assets/audio/words/`.
 - Telegram WebApp access is isolated in `js/telegram.js`.
+
+## Pronunciation generation contract
+
+- Current assets: `assets/audio/words/word-001.mp3` through `word-032.mp3` (32 files, one per learning-unit ID). The original 12 verified local MP3 assets (`word-001.mp3`–`word-012.mp3`) remain unchanged. `js/data.js` derives each source as `assets/audio/words/word-0NN.mp3`.
+- Confirmed source: Google Cloud Text-to-Speech via Google Cloud Console, project `project-fd21fcf5-9053-4777-94c`, API `texttospeech.googleapis.com`.
+- Use language `ar-XA`, voice `ar-XA-Wavenet-B`, and MP3 output. Send the exact Arabic text stored in `js/data.js`, including its diacritics; do not change spelling or punctuation for synthesis.
+- In every new Cloud Shell session, initialise a fresh project and token before calling the REST API:
+
+  ```sh
+  PROJECT_ID="$(gcloud config get-value project)"
+  TOKEN="$(gcloud auth print-access-token)"
+  gcloud services enable texttospeech.googleapis.com --project="$PROJECT_ID"
+  ```
+
+- Use the REST endpoint `https://texttospeech.googleapis.com/v1/text:synthesize` with headers `Authorization: Bearer $TOKEN`, `X-Goog-User-Project: $PROJECT_ID`, and `Content-Type: application/json; charset=utf-8`. The request JSON uses `input.text`, `voice.languageCode: "ar-XA"`, `voice.name: "ar-XA-Wavenet-B"`, and `audioConfig.audioEncoding: "MP3"`; decode the base64 `audioContent` response into `word-0NN.mp3`.
+- Do not record, commit, or share access tokens. A stale or missing fresh token previously caused `403 PERMISSION_DENIED` (“Method doesn't allow unregistered callers”).
+- `gcloud text-to-speech synthesize` is unavailable in Cloud Shell for this workflow; use the REST endpoint above. The batch used `words.txt` records in `NNN|Arabic text` form and a shell loop. A fresh token was used for the successful `word-014`–`word-032` batch; `word-013` was verified with a separate REST request.
 
 ## Known limitations
 
@@ -51,9 +68,9 @@
 
 ## Next tasks
 
-- Review and approve the Lesson 8 “Еда и напитки” learning units before adding more curriculum content, unless the user chooses to revisit the unresolved iOS overflow first.
-- Future pronunciation source is confirmed as Google Cloud Text-to-Speech via Google Cloud Console; source or verify matching local MP3 recordings before enabling pronunciation for words 13–32.
+- Choose the next bounded stage explicitly: either investigate the unresolved extreme-iOS-text Telegram WebView overflow with real runtime measurements, or review and approve Lesson 8 “Еда и напитки”.
+- For future vocabulary, generate and verify a matching local MP3 under the documented Google Cloud Text-to-Speech contract before setting its `audio.src` availability.
 
 ## Next authorized stage
 
-**One bounded curriculum expansion, frontend only, after approval: Lesson 8 “Еда и напитки”.** Add exactly one practical food-and-drinks lesson that follows the existing `js/data.js` structure, preserves Russian and Uzbek translations and localStorage compatibility, and does not invent audio assets. The user may instead authorize a bounded investigation of the unresolved extreme-iOS-text overflow using real WebView runtime measurements. Do not add backend, server, database, authentication, remote persistence, or deployment work without a separate authorization.
+**User must choose one bounded frontend-only stage:** (A) investigate the unresolved extreme-iOS-system-text overflow in the real Telegram iOS WebView using runtime measurements, or (B) after separate approval, add Lesson 8 “Еда и напитки” with approved units, RU/UZ translations, and verified local MP3 files. Preserve localStorage compatibility and do not add backend, server, database, authentication, remote persistence, or deployment work.
