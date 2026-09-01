@@ -4,18 +4,18 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- HEAD: `84fa4cf9b2d2d0db7ffad4043487ff02249c463d`
+- HEAD: `46011d84d5d8fcfc15cbde47761a9be0f27f309e`
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
-- Latest completed stage: `chore(arabic): remove temporary layout diagnostics` (real iPhone layout investigation completed)
+- Latest completed stage: `feat(arabic): add lessons 8-11`
 
 ## Completed functionality
 
-- Static lesson dashboard with 7 lessons and 32 Arabic learning units, including Lesson 7, “Дом и комнаты”.
+- Static lesson dashboard with 11 lessons and 52 Arabic learning units, including Lessons 8–11: “Еда и напитки”, “Семья”, “Одежда”, and “Места и город”.
 - Russian and Uzbek interface and word translations.
 - Word-builder exercise, learning progress, XP, streak, attempts, and correct-answer tracking.
 - Browser-local persistence using `localStorage`.
-- Audio Stage completed: pronunciation playback for all 32 learning units through verified local MP3 files. Every unit now exposes its local `audio.src` path; the localized “pronunciation soon” fallback is retained only for any future unit without a verified file.
+- Pronunciation playback for all 52 learning units through verified local MP3 files. Every unit now exposes its local `audio.src` path; the localized “pronunciation soon” fallback is retained only for any future unit without a verified file.
 - Telegram WebApp SDK initialization with optional display of the Telegram user's first name.
 - Explicit lesson completion flow: completed lessons show a completion state, progress continues to the next incomplete lesson, and a final state is shown after all lessons are complete.
 - Completed lessons remain available from the lesson list for review.
@@ -34,7 +34,8 @@
 
 ## Pronunciation generation contract
 
-- Current assets: `assets/audio/words/word-001.mp3` through `word-032.mp3` (32 files, one per learning-unit ID). The original 12 verified local MP3 assets (`word-001.mp3`–`word-012.mp3`) remain unchanged. `js/data.js` derives each source as `assets/audio/words/word-0NN.mp3`.
+- Current assets: `assets/audio/words/word-001.mp3` through `word-052.mp3` (52 files, one per learning-unit ID). The original 12 verified local MP3 assets (`word-001.mp3`–`word-012.mp3`) remain unchanged. `js/data.js` derives each source as `assets/audio/words/word-0NN.mp3`.
+- Lessons 8–11 use IDs `33`–`52` and verified local assets `word-033.mp3`–`word-052.mp3`. Validation confirmed 11 lessons, 52 units, sequential unique IDs `1`–`52`, correct audio-path mapping, non-empty expected MP3 files, JavaScript syntax, and `git diff --check`.
 - Confirmed source: Google Cloud Text-to-Speech via Google Cloud Console, project `project-fd21fcf5-9053-4777-94c`, API `texttospeech.googleapis.com`.
 - Use language `ar-XA`, voice `ar-XA-Wavenet-B`, and MP3 output. Send the exact Arabic text stored in `js/data.js`, including its diacritics; do not change spelling or punctuation for synthesis.
 - In every new Cloud Shell session, initialise a fresh project and token before calling the REST API:
@@ -70,9 +71,9 @@
 
 ## Next tasks
 
-- Review and approve Lesson 8 “Еда и напитки” before adding more curriculum content. If a distinct extreme iOS system-text-size issue is reproduced later, collect fresh runtime measurements before changing layout CSS.
+- No further curriculum stage is authorized automatically. Review and approve the next lesson set before adding more content. If a distinct extreme iOS system-text-size issue is reproduced later, collect fresh runtime measurements before changing layout CSS.
 - For future vocabulary, generate and verify a matching local MP3 under the documented Google Cloud Text-to-Speech contract before setting its `audio.src` availability.
 
 ## Next authorized stage
 
-**One bounded curriculum expansion, frontend only, after separate approval: Lesson 8 “Еда и напитки”.** Add only approved units with RU/UZ translations and verified local MP3 files, preserving localStorage compatibility. Do not add backend, server, database, authentication, remote persistence, or deployment work. If a distinct extreme iOS system-text-size issue is reproduced, authorize a separate measurement-first investigation instead of speculative CSS changes.
+**No next stage is authorized until the user explicitly approves it.** Any future curriculum expansion must be bounded, frontend only, use approved units with RU/UZ translations and verified local MP3 files, and preserve localStorage compatibility. Do not add backend, server, database, authentication, remote persistence, or deployment work. If a distinct extreme iOS system-text-size issue is reproduced, authorize a separate measurement-first investigation instead of speculative CSS changes.
