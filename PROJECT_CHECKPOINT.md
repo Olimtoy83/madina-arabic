@@ -4,10 +4,10 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- HEAD: `4e01f98003cadf9112bbd434ffe094a2089a2393`
+- HEAD: `84fa4cf9b2d2d0db7ffad4043487ff02249c463d`
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
-- Latest completed stage: `feat(audio): add pronunciation for lessons 4-7`
+- Latest completed stage: `chore(arabic): remove temporary layout diagnostics` (real iPhone layout investigation completed)
 
 ## Completed functionality
 
@@ -20,6 +20,7 @@
 - Explicit lesson completion flow: completed lessons show a completion state, progress continues to the next incomplete lesson, and a final state is shown after all lessons are complete.
 - Completed lessons remain available from the lesson list for review.
 - Mobile reflow improvements for the dashboard, cards, buttons, and language controls; normal iPhone dashboard and lesson screens were visually verified in Russian and Uzbek.
+- Real iPhone Telegram WebView investigation completed. In the normal state, `documentElement.clientWidth`, document `scrollWidth`, and body `scrollWidth` were all `430px`, with `visualViewport.width=430` and `scale=1`. In the problem-looking state, document and body widths remained `430px`, while `visualViewport.width` became approximately `301px` at `scale≈1.4264`.
 
 ## Architecture
 
@@ -54,7 +55,8 @@
 - No verified backend, API, database, server-side authentication, remote progress synchronization, or account model is present.
 - Telegram use is client-side only; bot configuration and server-side validation of Telegram `initData` need verification.
 - No deployment, hosting, monitoring, production-operation, or formal acceptance evidence is present in this repository.
-- **Known issue / pending verification:** extreme iOS system text size in the Telegram WebView can still cause horizontal overflow. The exact runtime offender has not been identified; do not claim this is resolved. A future investigation should use real WebView measurements such as `getBoundingClientRect()` and `scrollWidth` when tooling is available.
+- **NOT A CSS LAYOUT BUG / RESOLVED BY DIAGNOSIS:** the reproduced apparent horizontal-overflow hypothesis was caused by user/browser pinch zoom. `scrollWidth` remained equal to the `430px` layout viewport, so document-level CSS horizontal overflow was not demonstrated. No `overflow-x` concealment or accessibility-hostile zoom restriction was added.
+- This diagnosis does **not** independently verify a separate extreme iOS system text-size / Dynamic Type scenario. Reopen investigation only if that distinct state is reproduced with fresh runtime measurements.
 - `text-size-adjust:100%` was tested and removed because it did not solve the real-device case.
 
 ## Development rules
@@ -68,9 +70,9 @@
 
 ## Next tasks
 
-- Choose the next bounded stage explicitly: either investigate the unresolved extreme-iOS-text Telegram WebView overflow with real runtime measurements, or review and approve Lesson 8 “Еда и напитки”.
+- Review and approve Lesson 8 “Еда и напитки” before adding more curriculum content. If a distinct extreme iOS system-text-size issue is reproduced later, collect fresh runtime measurements before changing layout CSS.
 - For future vocabulary, generate and verify a matching local MP3 under the documented Google Cloud Text-to-Speech contract before setting its `audio.src` availability.
 
 ## Next authorized stage
 
-**User must choose one bounded frontend-only stage:** (A) investigate the unresolved extreme-iOS-system-text overflow in the real Telegram iOS WebView using runtime measurements, or (B) after separate approval, add Lesson 8 “Еда и напитки” with approved units, RU/UZ translations, and verified local MP3 files. Preserve localStorage compatibility and do not add backend, server, database, authentication, remote persistence, or deployment work.
+**One bounded curriculum expansion, frontend only, after separate approval: Lesson 8 “Еда и напитки”.** Add only approved units with RU/UZ translations and verified local MP3 files, preserving localStorage compatibility. Do not add backend, server, database, authentication, remote persistence, or deployment work. If a distinct extreme iOS system-text-size issue is reproduced, authorize a separate measurement-first investigation instead of speculative CSS changes.
