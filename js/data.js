@@ -10,6 +10,9 @@ const lessons = [
   ] },
   { id: "polite-words", titles: { ru: "Вежливые слова", uz: "Xushmuomala so‘zlar" }, descriptions: { ru: "Короткие слова для приветствия и вежливого общения.", uz: "Salomlashish va xushmuomala suhbat uchun qisqa so‘zlar." }, words: [
     [13,"نَعَمْ","Да","Ha",["ن","ع","م"],false], [14,"لَا","Нет","Yo‘q",["ل","ا"],false], [15,"شُكْرًا","Спасибо","Rahmat",["ش","ك","ر","ا"],false], [16,"مَرْحَبًا","Здравствуйте","Salom",["م","ر","ح","ب","ا"],false]
+  ] },
+  { id: "introductions", titles: { ru: "Знакомство", uz: "Tanishuv" }, descriptions: { ru: "Слова, чтобы представиться и спросить имя.", uz: "O‘zingizni tanishtirish va ism so‘rash uchun so‘zlar." }, words: [
+    [17,"أَنَا","Я","Men",["أ","ن","ا"],false], [18,"أَنْتَ","Ты (м.)","Sen",["أ","ن","ت"],false], [19,"مَنْ","Кто?","Kim?",["م","ن"],false], [20,"اِسْمِي","Моё имя","Mening ismim",["ا","س","م","ي"],false], [21,"اِسْمٌ","Имя","Ism",["ا","س","م"],false], [22,"صَدِيقٌ","Друг","Do‘st",["ص","د","ي","ق"],false]
   ] }
 ].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
