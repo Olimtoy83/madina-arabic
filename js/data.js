@@ -16,6 +16,9 @@ const lessons = [
   ] },
   { id: "numbers-one-to-five", titles: { ru: "Числа 1–5", uz: "1–5 sonlari" }, descriptions: { ru: "Первые числа для счёта в повседневных ситуациях.", uz: "Kundalik holatlarda sanash uchun dastlabki sonlar." }, words: [
     [23,"وَاحِدٌ","Один","Bir",["و","ا","ح","د"],false], [24,"اِثْنَانِ","Два","Ikki",["ا","ث","ن","ا","ن"],false], [25,"ثَلَاثَةٌ","Три","Uch",["ث","ل","ا","ث","ة"],false], [26,"أَرْبَعَةٌ","Четыре","To‘rt",["أ","ر","ب","ع","ة"],false], [27,"خَمْسَةٌ","Пять","Besh",["خ","م","س","ة"],false]
+  ] },
+  { id: "home-and-rooms", titles: { ru: "Дом и комнаты", uz: "Uy va xonalar" }, descriptions: { ru: "Слова для описания дома и предметов в нём.", uz: "Uy va undagi buyumlarni tasvirlash uchun so‘zlar." }, words: [
+    [28,"غُرْفَةٌ","Комната","Xona",["غ","ر","ف","ة"],false], [29,"مَطْبَخٌ","Кухня","Oshxona",["م","ط","ب","خ"],false], [30,"نَافِذَةٌ","Окно","Deraza",["ن","ا","ف","ذ","ة"],false], [31,"كُرْسِيٌّ","Стул","Stul",["ك","ر","س","ي"],false], [32,"سَرِيرٌ","Кровать","Karavot",["س","ر","ي","ر"],false]
   ] }
 ].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
