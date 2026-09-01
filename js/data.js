@@ -7,6 +7,9 @@ const lessons = [
   ] },
   { id: "everyday-things", titles: { ru: "Вокруг нас", uz: "Atrofimizda" }, descriptions: { ru: "Ещё несколько слов для повседневной жизни.", uz: "Kundalik hayot uchun yana bir nechta so‘z." }, words: [
     [10,"مَاءٌ","Вода","Suv",["م","ا","ء"]], [11,"شَمْسٌ","Солнце","Quyosh",["ش","م","س"]], [12,"قَمَرٌ","Луна","Oy",["ق","م","ر"]]
+  ] },
+  { id: "polite-words", titles: { ru: "Вежливые слова", uz: "Xushmuomala so‘zlar" }, descriptions: { ru: "Короткие слова для приветствия и вежливого общения.", uz: "Salomlashish va xushmuomala suhbat uchun qisqa so‘zlar." }, words: [
+    [13,"نَعَمْ","Да","Ha",["ن","ع","م"],false], [14,"لَا","Нет","Yo‘q",["ل","ا"],false], [15,"شُكْرًا","Спасибо","Rahmat",["ش","ك","ر","ا"],false], [16,"مَرْحَبًا","Здравствуйте","Salom",["م","ر","ح","ب","ا"],false]
   ] }
-].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: { src: path, expectedPath: path } }; }) }));
+].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
