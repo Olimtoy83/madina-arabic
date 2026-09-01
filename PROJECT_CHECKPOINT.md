@@ -4,18 +4,18 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- HEAD: `9a538e82e6c1b770a25330023d61983cef67f40c`
+- HEAD: `4e0b2066f0486529406a11d25f9ceda0d9ff9c35`
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
-- Latest completed stage: `feat(arabic): add lesson completion flow`
+- Latest completed stage: `feat(arabic): add polite words lesson`
 
 ## Completed functionality
 
-- Static lesson dashboard with 3 lessons and 12 Arabic vocabulary words.
+- Static lesson dashboard with 4 lessons and 16 Arabic vocabulary words.
 - Russian and Uzbek interface and word translations.
 - Word-builder exercise, learning progress, XP, streak, attempts, and correct-answer tracking.
 - Browser-local persistence using `localStorage`.
-- Pronunciation playback for 12 local MP3 files.
+- Pronunciation playback for 12 verified local MP3 files; the 4 polite-word entries intentionally show the localized “pronunciation soon” state until matching recordings are available.
 - Telegram WebApp SDK initialization with optional display of the Telegram user's first name.
 - Explicit lesson completion flow: completed lessons show a completion state, progress continues to the next incomplete lesson, and a final state is shown after all lessons are complete.
 - Completed lessons remain available from the lesson list for review.
@@ -48,10 +48,9 @@
 
 ## Next tasks
 
-- Verify the lesson-completion flow in a supported browser or Telegram WebApp runtime; no browser-level automated test is currently present.
-- Determine, if needed, the next small learner-facing improvement without adding backend/server work.
-- Verify requirements before introducing any remote persistence, authentication, bot configuration, deployment, or operational tooling.
+- Review and approve the proposed next vocabulary lesson before adding more curriculum content.
+- Source or verify matching local MP3 recordings before enabling pronunciation for words 13–16.
 
 ## Next authorized stage
 
-**Bounded learner-flow refinement, frontend only.** Select one verified, small usability or learning-flow improvement after reviewing the current user experience. Do not add backend, server, database, authentication, remote persistence, or deployment work without a separate authorization.
+**One bounded curriculum expansion, frontend only, after approval.** Add exactly one practical vocabulary lesson that follows the existing `js/data.js` structure, preserves Russian and Uzbek translations and localStorage compatibility, and does not invent audio assets. Do not add backend, server, database, authentication, remote persistence, or deployment work without a separate authorization.
