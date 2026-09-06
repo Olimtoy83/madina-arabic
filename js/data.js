@@ -31,6 +31,28 @@ const lessons = [
   ] },
   { id: "places-and-city", titles: { ru: "Места и город", uz: "Joylar va shahar" }, descriptions: { ru: "Полезные места в городе.", uz: "Shahardagi foydali joylar." }, words: [
     [48,"مَسْجِدٌ","Мечеть","Masjid",["م","س","ج","د"]], [49,"سُوقٌ","Рынок","Bozor",["س","و","ق"]], [50,"مَطْعَمٌ","Ресторан","Restoran",["م","ط","ع","م"]], [51,"مُسْتَشْفًى","Больница","Kasalxona",["م","س","ت","ش","ف","ى"]], [52,"مَدْرَسَةٌ","Школа","Maktab",["م","د","ر","س","ة"]]
-  ] }
-].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {} }; }) }));
+  ] },
+{ id: "shop-and-shopping", titles: { ru: "Магазин и покупки", uz: "Do‘kon va xaridlar" }, descriptions: { ru: "Практические слова для магазина, рынка, оплаты и покупок.", uz: "Do‘kon, bozor, to‘lov va xaridlar uchun amaliy so‘zlar." }, words: [
+[53,"مَتْجَر","Магазин","Do‘kon",["م","ت","ج","ر"],false,"assets/images/03A/01.jpg"],
+[54,"سُوق","Рынок","Bozor",["س","و","ق"],false,"assets/images/03A/02.jpg"],
+[55,"مُنْتَج","Товар","Mahsulot",["م","ن","ت","ج"],false,"assets/images/03A/03.jpg"],
+[56,"سِعْر","Цена","Narx",["س","ع","ر"],false,"assets/images/03A/04.jpg"],
+[57,"خَصْم","Скидка","Chegirma",["خ","ص","م"],false,"assets/images/03A/05.jpg"],
+[58,"عَرْض","Акция / предложение","Aksiya / taklif",["ع","ر","ض"],false,"assets/images/03A/06.jpg"],
+[59,"فَاتُورَة","Счёт / чек","Hisob / chek",["ف","ا","ت","و","ر","ة"],false,"assets/images/03A/07.jpg"],
+[60,"كَاشِير","Кассир","Kassir",["ك","ا","ش","ي","ر"],false,"assets/images/03A/08.jpg"],
+[61,"عَرَبَة تَسَوُّق","Тележка","Xarid aravachasi",["ع","ر","ب","ة","ت","س","و","ق"],false,"assets/images/03A/09.jpg"],
+[62,"سَلَّة","Корзина","Savat",["س","ل","ة"],false,"assets/images/03A/10.jpg"],
+[63,"كِيس","Пакет","Paket",["ك","ي","س"],false,"assets/images/03A/11.jpg"],
+[64,"مِيزَان","Весы","Tarozi",["م","ي","ز","ا","ن"],false,"assets/images/03A/12.jpg"],
+[65,"كِيلُو","Килограмм","Kilogramm",["ك","ي","ل","و"],false,"assets/images/03A/13.jpg"],
+[66,"حَبَّة","Штука","Dona",["ح","ب","ة"],false,"assets/images/03A/14.jpg"],
+[67,"مَقَاس","Размер","O‘lcham",["م","ق","ا","س"],false,"assets/images/03A/15.jpg"],
+[68,"نَقْد","Наличные","Naqd pul",["ن","ق","د"],false,"assets/images/03A/16.jpg"],
+[69,"بِطَاقَة","Карта","Karta",["ب","ط","ا","ق","ة"],false,"assets/images/03A/17.jpg"],
+[70,"دَفْع","Оплата","To‘lov",["د","ف","ع"],false,"assets/images/03A/18.jpg"],
+[71,"رِيَال","Риял","Riyol",["ر","ي","ا","ل"],false,"assets/images/03A/19.jpg"],
+[72,"بَاقِي","Сдача","Qaytim",["ب","ا","ق","ي"],false,"assets/images/03A/20.jpg"]
+] }
+].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true, imageSrc]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {}, image: imageSrc ? { src: imageSrc } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
