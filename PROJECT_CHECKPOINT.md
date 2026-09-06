@@ -154,3 +154,41 @@ Status:
 - Export success, Git commit, or attractive appearance alone is not acceptance evidence.
 - Future topics should normally use 20 words per sheet; split into A/B instead of padding with weak vocabulary.
 - The shared Arabic / image / future-audio vocabulary unit remains reusable across RU and UZ localization layers.
+
+## 03A Mini App Audio and Review
+
+Status: **QA PASS**
+
+- Lesson `shop-and-shopping` uses word IDs `53`–`72`.
+- Verified local audio files:
+  - `assets/audio/words/word-053.mp3`
+  - through `assets/audio/words/word-072.mp3`
+- All 20 files were generated with the established Google Cloud Text-to-Speech contract:
+  - language: `ar-XA`
+  - voice: `ar-XA-Wavenet-B`
+  - encoding: MP3
+  - source text: exact Arabic vocabulary text from `js/data.js`
+- Auditory QA for words `53`–`72` — **PASS**.
+- `js/data.js` audio availability for IDs `53`–`72` is enabled only after the matching local MP3 files were generated and verified.
+
+### Completed lesson review
+
+- A completed lesson can be opened again with `Пройти ещё раз` / `Qayta o‘tish`.
+- Review starts from word 1 while saved lesson mastery remains `20 / 20`.
+- Review navigation advances through all lesson words even when the lesson is already mastered.
+- Using `Я знаю` / `Bilaman` in review mode does not award duplicate XP.
+- After the final word, review returns to the lesson-complete screen.
+- RU and UZ review localization was visually verified.
+- 03A review flow was functionally verified with saved progress remaining `20 / 20` and XP remaining unchanged.
+- `openLesson()` explicitly resets transient `reviewMode` so review state does not carry into another explicitly opened lesson.
+
+### 03A Mini App QA evidence
+
+- 20 verified illustrations remain mapped to `assets/images/03A/01.jpg` through `20.jpg`.
+- 20 verified audio files remain mapped to `assets/audio/words/word-053.mp3` through `word-072.mp3`.
+- RU and UZ word-card localization — **PASS**.
+- Audio playback availability for 03A — **PASS**.
+- Completed-lesson review flow — **PASS**.
+- Duplicate-XP protection during normal review navigation — **PASS**.
+- JavaScript syntax checks for `js/data.js`, `js/i18n.js`, and `js/app.js` — **PASS**.
+- `git diff --check` reports no whitespace errors; LF-to-CRLF messages are Git line-ending warnings only.
