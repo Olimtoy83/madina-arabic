@@ -4,10 +4,10 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- HEAD: `e285e1b`
+- Verified baseline before Visual Vocabulary 03A documentation: `8219df2`
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
-- Latest completed stage: `fix(ui): add mobile bottom action spacing`
+- Latest accepted content stage: `MADINA ARABIC Visual Vocabulary 03A — Магазин и покупки / ДЎКОН ВА ХАРИДЛАР`
 
 ## Completed functionality
 
@@ -81,3 +81,76 @@
 ## Next authorized stage
 
 **No next stage is authorized until the user explicitly approves it.** Any future curriculum expansion must be bounded, frontend only, use approved units with RU/UZ translations and verified local MP3 files, and preserve localStorage compatibility. Do not add backend, server, database, authentication, remote persistence, or deployment work. If a distinct extreme iOS system-text-size issue is reproduced, authorize a separate measurement-first investigation instead of speculative CSS changes.
+
+## Visual Vocabulary Cards
+
+### 03A — Магазин и покупки / ДЎКОН ВА ХАРИДЛАР
+
+Status:
+
+- `03A-RU v1.0` — **ACCEPTED**
+- `03A-UZ v1.0` — **ACCEPTED**
+- Final PDFs:
+  - `docs/cards/03A/MADINA_ARABIC_03A_RU_v1.0.pdf`
+  - `docs/cards/03A/MADINA_ARABIC_03A_UZ_v1.0.pdf`
+- RU and UZ use the same Arabic vocabulary, illustrations, order, and visual system.
+- Russian and Uzbek localization layers remain separate.
+- Intermediate renders belong under `output/` or `tmp/` and are not repository artifacts.
+
+### 03A vocabulary
+
+1. `مَتْجَر` — store / shop
+2. `سُوق` — market
+3. `مُنْتَج` — product
+4. `سِعْر` — price
+5. `خَصْم` — discount
+6. `عَرْض` — promotion / offer
+7. `فَاتُورَة` — bill / receipt
+8. `كَاشِير` — cashier
+9. `عَرَبَة تَسَوُّق` — shopping cart
+10. `سَلَّة` — basket
+11. `كِيس` — bag
+12. `مِيزَان` — scale
+13. `كِيلُو` — kilogram / kilo
+14. `حَبَّة` — one piece / unit
+15. `مَقَاس` — size
+16. `نَقْد` — cash
+17. `بِطَاقَة` — card
+18. `دَفْع` — payment
+19. `رِيَال` — riyal
+20. `بَاقِي` — change / remaining amount in shopping context
+
+### Language standard
+
+- Cards use practical isolated / pausal Arabic pronunciation for beginner learning.
+- Do not add artificial full MSA case endings or tanwin to isolated vocabulary cards.
+- Final `ة` is taught in practical isolated pronunciation as `-a`.
+- In connected constructions the hidden `t` of `ة` may surface; `عَرَبَة تَسَوُّق` therefore uses `ʿarabat`.
+- `تَسَوُّق` is pronounced `tasawwuq`; Uzbek learner transliteration uses `ТАСА́ВВУҚ`.
+- Uzbek localization uses Cyrillic.
+- Practical Uzbek mapping includes `ح → Ҳ`, `خ → Х`, `ق → Қ`, `ع → Ъ`.
+- Confirmed Uzbek forms include `حَبَّة → ҲА́ББА`, `مَقَاس → МАҚА́С`, `بِطَاقَة → БИТА́ҚА`.
+- Russian and Uzbek transliterations are independent localization layers.
+
+### Illustration and layout standard
+
+- Accepted baseline: **MADINA ARABIC Illustration Standard v1**.
+- Format: A3 landscape.
+- Grid: 5 columns × 4 rows = 20 cards.
+- Card image ratio: 4:3.
+- Visual direction: premium semi-realistic / soft 3D realism with warm neutral lighting.
+- Brand palette: deep green, warm cream, soft gold, white.
+- One primary visual meaning per card.
+- No visible human faces.
+- No brands, random generated text, fake official documents, fake banknotes, or uncontrolled official symbols.
+- Exact Arabic, transliteration, translations, numbering, currency labels, and branding are controlled separately from illustrations.
+- Arabic PDF text must use correct RTL shaping; naive ReportLab Arabic rendering is not acceptable.
+- Reusing one temporary image filename for multiple ReportLab cards is prohibited because image caching previously duplicated card images.
+
+### QA and acceptance contract
+
+- Educational accuracy has priority over visual attractiveness.
+- Required sequence: topic → vocabulary → language QA → visual concept → generation → layout → render → visual inspection → acceptance.
+- Export success, Git commit, or attractive appearance alone is not acceptance evidence.
+- Future topics should normally use 20 words per sheet; split into A/B instead of padding with weak vocabulary.
+- The shared Arabic / image / future-audio vocabulary unit remains reusable across RU and UZ localization layers.
