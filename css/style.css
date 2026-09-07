@@ -1,4 +1,51 @@
-:root { --ink:#19332a; --muted:#62756d; --green:#167452; --green-dark:#10563d; --green-soft:#e8f3ed; --line:#dce8e1; --surface:#fff; --background:#f3f7f4; --error:#a84444; --focus:#1b82a9; }
+:root {
+  /* MADINA ARABIC Visual System v1 */
+  --madina-green: #167452;
+  --madina-green-dark: #10563d;
+  --warm-cream: #f8f4eb;
+  --charcoal: #19332a;
+  --soft-green: #e8f3ed;
+  --warm-sand: #e9dfcf;
+
+  --text-primary: var(--charcoal);
+  --text-secondary: #62756d;
+  --surface-primary: #ffffff;
+  --surface-soft: var(--warm-cream);
+  --surface-success: var(--soft-green);
+
+  --border-default: #dce8e1;
+  --border-strong: #c4ddcf;
+
+  --danger: #a84444;
+  --focus-ring: #1b82a9;
+
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --shadow-soft: 0 8px 24px rgba(25, 51, 42, 0.06);
+
+  /* Compatibility aliases for the current UI */
+  --ink: var(--text-primary);
+  --muted: var(--text-secondary);
+  --green: var(--madina-green);
+  --green-dark: var(--madina-green-dark);
+  --green-soft: var(--soft-green);
+  --line: var(--border-default);
+  --surface: var(--surface-primary);
+  --background: var(--surface-soft);
+  --error: var(--danger);
+  --focus: var(--focus-ring);
+}
 * { box-sizing:border-box; }
 body { margin:0; color:var(--ink); background:var(--background); font-family:Arial,sans-serif; }
 button { font:inherit; } button:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
