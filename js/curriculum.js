@@ -58,3 +58,26 @@ function normalizeSpeakItems(saved) {
       chunks: Array.isArray(item.chunks) ? item.chunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
     }));
 }
+
+function normalizeExpandItems(saved) {
+  if (!Array.isArray(saved)) return [];
+
+  return saved
+    .filter((item) =>
+      item &&
+      typeof item === "object" &&
+      !Array.isArray(item) &&
+      typeof item.id === "string" &&
+      item.id &&
+      typeof item.arabic === "string" &&
+      item.arabic
+    )
+    .map((item) => ({
+      id: item.id,
+      arabic: item.arabic,
+      translations: normalizeLocalizedText(item.translations),
+      baseSpeakId: typeof item.baseSpeakId === "string" && item.baseSpeakId ? item.baseSpeakId : null,
+      addedArabic: typeof item.addedArabic === "string" && item.addedArabic ? item.addedArabic : "",
+      chunks: Array.isArray(item.chunks) ? item.chunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
+    }));
+}

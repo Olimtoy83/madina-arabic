@@ -73,6 +73,19 @@ const lessons = [
 { id: "03A-S10", arabic: "بَدْفَع بِالْبِطَاقَة", translations: { ru: "Я оплачу картой", uz: "Karta bilan to‘layman" }, speechKeyId: "pay", chunks: ["بَدْفَع", "بِالْبِطَاقَة"] },
 { id: "03A-S11", arabic: "بَدْفَع نَقْد", translations: { ru: "Я оплачу наличными", uz: "Naqd pul bilan to‘layman" }, speechKeyId: "pay", chunks: ["بَدْفَع", "نَقْد"] },
 { id: "03A-S12", arabic: "وَيْن الكَاشِير؟", translations: { ru: "Где касса?", uz: "Kassa qayerda?" }, speechKeyId: "where", chunks: ["وَيْن", "الكَاشِير؟"] }
+], expand: [
+{ id: "03A-E01", arabic: "بِكَم هَذَا المُنْتَج؟", translations: { ru: "Сколько стоит этот товар?", uz: "Bu mahsulot qancha turadi?" }, baseSpeakId: "03A-S01", addedArabic: "المُنْتَج", chunks: ["بِكَم", "هَذَا", "المُنْتَج؟"] },
+{ id: "03A-E02", arabic: "فِيه خَصْم عَلَى هَذَا؟", translations: { ru: "На это есть скидка?", uz: "Bunga chegirma bormi?" }, baseSpeakId: "03A-S02", addedArabic: "عَلَى هَذَا", chunks: ["فِيه", "خَصْم", "عَلَى", "هَذَا؟"] },
+{ id: "03A-E03", arabic: "أَبْغَى هَذَا، لَو سَمَحْت", translations: { ru: "Я хочу это, пожалуйста", uz: "Men buni xohlayman, iltimos" }, baseSpeakId: "03A-S03", addedArabic: "لَو سَمَحْت", chunks: ["أَبْغَى", "هَذَا،", "لَو سَمَحْت"] },
+{ id: "03A-E04", arabic: "أَبْغَى مَقَاس أَكْبَر مِن هَذَا", translations: { ru: "Мне нужен размер побольше этого", uz: "Menga bundan kattaroq o‘lcham kerak" }, baseSpeakId: "03A-S05", addedArabic: "مِن هَذَا", chunks: ["أَبْغَى", "مَقَاس", "أَكْبَر", "مِن", "هَذَا"] },
+{ id: "03A-E05", arabic: "أَبْغَى مَقَاس أَصْغَر مِن هَذَا", translations: { ru: "Мне нужен размер поменьше этого", uz: "Menga bundan kichikroq o‘lcham kerak" }, baseSpeakId: "03A-S06", addedArabic: "مِن هَذَا", chunks: ["أَبْغَى", "مَقَاس", "أَصْغَر", "مِن", "هَذَا"] },
+{ id: "03A-E06", arabic: "أَبْغَى كِيلُو مِن هَذَا، لَو سَمَحْت", translations: { ru: "Мне килограмм этого, пожалуйста", uz: "Menga bundan bir kilogramm kerak, iltimos" }, baseSpeakId: "03A-S07", addedArabic: "لَو سَمَحْت", chunks: ["أَبْغَى", "كِيلُو", "مِن", "هَذَا،", "لَو سَمَحْت"] },
+{ id: "03A-E07", arabic: "أَبْغَى حَبَّتَيْن مِن هَذَا", translations: { ru: "Мне две штуки этого", uz: "Menga bundan ikkita kerak" }, baseSpeakId: "03A-S08", addedArabic: "حَبَّتَيْن مِن هَذَا", chunks: ["أَبْغَى", "حَبَّتَيْن", "مِن", "هَذَا"] },
+{ id: "03A-E08", arabic: "مُمْكِن كِيس، لَو سَمَحْت؟", translations: { ru: "Можно пакет, пожалуйста?", uz: "Paket bersangiz, iltimos?" }, baseSpeakId: "03A-S09", addedArabic: "مُمْكِن ... لَو سَمَحْت؟", chunks: ["مُمْكِن", "كِيس،", "لَو سَمَحْت؟"] },
+{ id: "03A-E09", arabic: "مُمْكِن أَدْفَع بِالْبِطَاقَة؟", translations: { ru: "Можно оплатить картой?", uz: "Karta bilan to‘lasam bo‘ladimi?" }, baseSpeakId: "03A-S10", addedArabic: "مُمْكِن أَدْفَع ...؟", chunks: ["مُمْكِن", "أَدْفَع", "بِالْبِطَاقَة؟"] },
+{ id: "03A-E10", arabic: "مُمْكِن أَدْفَع نَقْد؟", translations: { ru: "Можно оплатить наличными?", uz: "Naqd pul bilan to‘lasam bo‘ladimi?" }, baseSpeakId: "03A-S11", addedArabic: "مُمْكِن أَدْفَع ...؟", chunks: ["مُمْكِن", "أَدْفَع", "نَقْد؟"] },
+{ id: "03A-E11", arabic: "كَم البَاقِي؟", translations: { ru: "Сколько сдачи?", uz: "Qaytim qancha?" }, baseSpeakId: "03A-S01", addedArabic: "البَاقِي", chunks: ["كَم", "البَاقِي؟"] },
+{ id: "03A-E12", arabic: "وَيْن أَدْفَع؟", translations: { ru: "Где оплатить?", uz: "Qayerda to‘layman?" }, baseSpeakId: "03A-S12", addedArabic: "أَدْفَع", chunks: ["وَيْن", "أَدْفَع؟"] }
 ] }
 ].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true, imageSrc]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {}, image: imageSrc ? { src: imageSrc } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
