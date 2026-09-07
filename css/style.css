@@ -143,10 +143,16 @@ h2 { font-weight:700; }
 .speak-stage-position { color:var(--text-secondary); font-size:13px; font-weight:750; }
 .speak-stage-phrase { margin:0; color:var(--text-primary); font-family:"Times New Roman",serif; font-size:clamp(34px,11vw,52px); line-height:1.35; text-align:center; overflow-wrap:anywhere; }
 .speak-stage-meaning { color:var(--text-secondary); font-size:17px; line-height:1.45; text-align:center; }
-.speak-key { display:grid; gap:var(--space-1); padding:var(--space-3); border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--surface-primary); }
+.speak-key { display:grid; width:100%; gap:var(--space-1); padding:var(--space-3); border:1px solid var(--border-default); border-radius:var(--radius-md); text-align:left; background:var(--surface-primary); cursor:pointer; }
+.speak-key:not(:disabled):hover { border-color:var(--madina-green); background:var(--surface-success); }
 .speak-key-label { color:var(--madina-green-dark); font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
 .speak-key-arabic { color:var(--text-primary); font-family:"Times New Roman",serif; font-size:26px; line-height:1.35; }
 .speak-key-meaning { color:var(--text-secondary); font-size:14px; line-height:1.4; }
+.speak-key-details { display:grid; gap:var(--space-2); padding:var(--space-4); border:1px solid var(--border-strong); border-radius:var(--radius-md); background:var(--surface-primary); }
+.speak-key-details h3 { margin:0; color:var(--text-primary); font-size:16px; }
+.speak-key-details-arabic { margin:0; color:var(--text-primary); font-family:"Times New Roman",serif; font-size:30px; line-height:1.35; overflow-wrap:anywhere; }
+.speak-key-details-meaning { margin:0; color:var(--text-secondary); font-size:15px; line-height:1.45; }
+.speak-key-close { justify-self:start; }
 .speak-stage-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-2); }
 .speak-stage-actions > button { min-width:0; }
 @media (max-width:340px) { .topic-stage-nav { grid-template-columns:1fr; } }
