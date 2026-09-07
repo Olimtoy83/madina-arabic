@@ -79,3 +79,51 @@ html,body { width:100%; max-width:100%; }body,.app,main,.screen { min-width:0; }
   height:100%;
   object-fit:cover;
 }
+
+/* Stage 2B — Visual Foundation: typography, surfaces, and controls. */
+body {
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+h1,h2 { color:var(--text-primary); letter-spacing:-.02em; }
+h1 { font-weight:750; }
+h2 { font-weight:700; }
+
+.summary-card,.lesson-progress,.word-card,.builder-card,.lesson-card {
+  border-color:var(--border-default);
+  border-radius:var(--radius-lg);
+  background:var(--surface-primary);
+  box-shadow:var(--shadow-soft);
+}
+
+.summary-card,.lesson-progress { background:var(--surface-soft); }
+.word-card,.builder-card { border-color:var(--border-strong); }
+.lesson-card { transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease; }
+.lesson-complete-card { border-color:var(--border-strong); background:var(--surface-success); }
+.word-illustration { border:1px solid var(--border-default); border-radius:var(--radius-md); box-shadow:var(--shadow-soft); }
+
+.primary-button,.secondary-button,.soft-button,.audio-button {
+  border-radius:var(--radius-md);
+  transition:background-color .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+
+.primary-button {
+  border-color:var(--madina-green);
+  background:var(--madina-green);
+  box-shadow:0 6px 14px rgba(22,116,82,.18);
+}
+
+.secondary-button { border-color:var(--border-strong); color:var(--text-primary); background:var(--surface-primary); }
+.soft-button { border-color:var(--border-strong); color:var(--madina-green-dark); background:var(--surface-success); }
+.audio-button { border-color:var(--border-strong); color:var(--madina-green-dark); background:var(--surface-primary); }
+
+@media (hover:hover) {
+  .primary-button:not(:disabled):hover { border-color:var(--madina-green-dark); background:var(--madina-green-dark); box-shadow:0 8px 18px rgba(22,116,82,.24); }
+  .secondary-button:not(:disabled):hover,.audio-button:not(:disabled):hover { border-color:var(--madina-green); background:var(--surface-soft); }
+  .soft-button:not(:disabled):hover { border-color:var(--madina-green); background:var(--soft-green); }
+  .lesson-card:hover { border-color:var(--border-strong); box-shadow:0 10px 22px rgba(25,51,42,.08); }
+}
+
+.primary-button:not(:disabled):active,.secondary-button:not(:disabled):active,.soft-button:not(:disabled):active,.audio-button:not(:disabled):active { transform:translateY(1px); }
+.primary-button:focus-visible,.secondary-button:focus-visible,.soft-button:focus-visible,.audio-button:focus-visible { outline:3px solid var(--focus-ring); outline-offset:3px; }
+.primary-button:disabled,.secondary-button:disabled,.soft-button:disabled,.audio-button:disabled { box-shadow:none; cursor:not-allowed; opacity:.62; }
