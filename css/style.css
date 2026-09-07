@@ -127,3 +127,14 @@ h2 { font-weight:700; }
 .primary-button:not(:disabled):active,.secondary-button:not(:disabled):active,.soft-button:not(:disabled):active,.audio-button:not(:disabled):active { transform:translateY(1px); }
 .primary-button:focus-visible,.secondary-button:focus-visible,.soft-button:focus-visible,.audio-button:focus-visible { outline:3px solid var(--focus-ring); outline-offset:3px; }
 .primary-button:disabled,.secondary-button:disabled,.soft-button:disabled,.audio-button:disabled { box-shadow:none; cursor:not-allowed; opacity:.62; }
+
+
+/* Stage 3A — Topic stage route */
+.topic-stage-nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-2); margin:0 0 var(--space-4); }
+.topic-stage { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:2px 8px; min-width:0; min-height:58px; padding:10px 12px; border:1px solid var(--border-default); border-radius:var(--radius-md); color:var(--text-secondary); text-align:left; background:var(--surface-soft); }
+.topic-stage[aria-current='step'] { border-color:var(--madina-green); color:var(--text-primary); background:var(--surface-success); }
+.topic-stage:disabled { cursor:default; opacity:.72; }
+.topic-stage-number { grid-row:1 / span 2; align-self:start; color:var(--madina-green); font-size:12px; font-weight:800; }
+.topic-stage-label { min-width:0; font-size:13px; font-weight:750; line-height:1.25; overflow-wrap:anywhere; }
+.topic-stage-status { color:var(--text-secondary); font-size:10px; line-height:1.2; }
+@media (max-width:340px) { .topic-stage-nav { grid-template-columns:1fr; } }

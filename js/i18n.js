@@ -7,3 +7,6 @@ Object.assign(translations.uz, { lessonCompleteEyebrow:"Dars tugadi", lessonComp
 let activeLocale = "ru";
 function setLocale(locale) { activeLocale = translations[locale] ? locale : "ru"; document.documentElement.lang = activeLocale; }
 function t(key, params = {}) { const value = translations[activeLocale][key] || translations.ru[key] || key; return value.replace(/\{(\w+)\}/g, (_, keyName) => params[keyName] ?? `{${keyName}}`); }
+
+Object.assign(translations.ru,{topicStages:'Этапы темы',stageWords:'Слова',stageSpeak:'Говори',stageExpand:'Расширяй',stageUnderstand:'Пойми и ответь',stageDialogue:'Диалог',stagePractice:'Практика',stageComingSoon:'Скоро'});
+Object.assign(translations.uz,{topicStages:'Mavzu bosqichlari',stageWords:'So‘zlar',stageSpeak:'Gapir',stageExpand:'Kengaytir',stageUnderstand:'Tushun va javob ber',stageDialogue:'Dialog',stagePractice:'Mashq',stageComingSoon:'Tez orada'});
