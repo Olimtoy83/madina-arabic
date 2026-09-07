@@ -8,5 +8,5 @@ let activeLocale = "ru";
 function setLocale(locale) { activeLocale = translations[locale] ? locale : "ru"; document.documentElement.lang = activeLocale; }
 function t(key, params = {}) { const value = translations[activeLocale][key] || translations.ru[key] || key; return value.replace(/\{(\w+)\}/g, (_, keyName) => params[keyName] ?? `{${keyName}}`); }
 
-Object.assign(translations.ru,{topicStages:'Этапы темы',stageWords:'Слова',stageSpeak:'Говори',stageExpand:'Расширяй',stageUnderstand:'Пойми и ответь',stageDialogue:'Диалог',stagePractice:'Практика',stageComingSoon:'Скоро'});
-Object.assign(translations.uz,{topicStages:'Mavzu bosqichlari',stageWords:'So‘zlar',stageSpeak:'Gapir',stageExpand:'Kengaytir',stageUnderstand:'Tushun va javob ber',stageDialogue:'Dialog',stagePractice:'Mashq',stageComingSoon:'Tez orada'});
+Object.assign(translations.ru,{topicStages:'Этапы темы',stageWords:'Слова',stageSpeak:'Говори',stageExpand:'Расширяй',stageUnderstand:'Пойми и ответь',stageDialogue:'Диалог',stagePractice:'Практика',stageComingSoon:'Скоро',speakStageKicker:'02 · Говори',speakStageDescription:'{count} фраз готовы. Тренажёр речи появится на следующем этапе.'});
+Object.assign(translations.uz,{topicStages:'Mavzu bosqichlari',stageWords:'So‘zlar',stageSpeak:'Gapir',stageExpand:'Kengaytir',stageUnderstand:'Tushun va javob ber',stageDialogue:'Dialog',stagePractice:'Mashq',stageComingSoon:'Tez orada',speakStageKicker:'02 · Gapir',speakStageDescription:'{count} ta ibora tayyor. Nutq mashqi keyingi bosqichda paydo bo‘ladi.'});
