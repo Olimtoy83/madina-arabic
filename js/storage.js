@@ -40,7 +40,9 @@ function normalizeTopicProgress(saved) {
           : LEARNING_STAGE_IDS[0];
 
         const sourceStages =
-          value.stages && typeof value.stages === "object" && !Array.isArray(value.stages)
+          value.stages &&
+          typeof value.stages === "object" &&
+          !Array.isArray(value.stages)
             ? value.stages
             : {};
 
@@ -54,6 +56,66 @@ function normalizeTopicProgress(saved) {
         return [lessonId, { currentStageId, stages }];
       })
   );
+}
+
+function getOrCreateTopicProgress(progress, lessonId) {
+  if (!lessons.some((lesson) => lesson.id === lessonId)) return null;
+
+  if (
+    !progress.topicProgress ||
+    typeof progress.topicProgress !== "object" ||
+    Array.isArray(progress.topicProgress)
+  ) {
+    progress.topicProgress = {};
+  }
+
+  const normalized = normalizeTopicProgress({
+    [lessonId]:
+      progress.topicProgress[lessonId] &&
+      typeof progress.topicProgress[lessonId] === "object" &&
+      !Array.isArray(progress.topicProgress[lessonId])
+        ? progress.topicProgress[lessonId]
+        : {},
+  });
+
+  progress.topicProgress[lessonId] = normalized[lessonId];
+  return progress.topicProgress[lessonId];
+}
+
+function getTopicStageProgress(progress, lessonId, stageId) {
+  if (!LEARNING_STAGE_IDS.includes(stageId)) return null;
+
+  const topic = getOrCreateTopicProgress(progress, lessonId);
+  return topic ? topic.stages[stageId] : null;
+}
+
+function setCurrentTopicStage(progress, lessonId, stageId) {
+  if (!LEARNING_STAGE_IDS.includes(stageId)) return false;
+
+  const topic = getOrCreateTopicProgress(progress, lessonId);
+  if (!topic) return false;
+
+  topic.currentStageId = stageId;
+  return true;
+}
+
+function updateTopicStageProgress(progress, lessonId, stageId, patch) {
+  if (!LEARNING_STAGE_IDS.includes(stageId)) return false;
+
+  const topic = getOrCreateTopicProgress(progress, lessonId);
+  if (!topic) return false;
+
+  const sourcePatch =
+    patch && typeof patch === "object" && !Array.isArray(patch)
+      ? patch
+      : {};
+
+  topic.stages[stageId] = normalizeStageProgress({
+    ...topic.stages[stageId],
+    ...sourcePatch,
+  });
+
+  return true;
 }
 
 function normalizeProgress(saved) {
