@@ -8,3 +8,52 @@ const LEARNING_STAGES = Object.freeze([
 ]);
 
 const LEARNING_STAGE_IDS = Object.freeze(LEARNING_STAGES.map((stage) => stage.id));
+
+function normalizeLocalizedText(saved) {
+  const source = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  return {
+    ru: typeof source.ru === "string" ? source.ru : "",
+    uz: typeof source.uz === "string" ? source.uz : "",
+  };
+}
+
+function normalizeSpeechKeys(saved) {
+  if (!Array.isArray(saved)) return [];
+
+  return saved
+    .filter((item) =>
+      item &&
+      typeof item === "object" &&
+      !Array.isArray(item) &&
+      typeof item.id === "string" &&
+      item.id &&
+      typeof item.arabic === "string" &&
+      item.arabic
+    )
+    .map((item) => ({
+      id: item.id,
+      arabic: item.arabic,
+      translations: normalizeLocalizedText(item.translations),
+    }));
+}
+
+function normalizeSpeakItems(saved) {
+  if (!Array.isArray(saved)) return [];
+
+  return saved
+    .filter((item) =>
+      item &&
+      typeof item === "object" &&
+      !Array.isArray(item) &&
+      typeof item.id === "string" &&
+      item.id &&
+      typeof item.arabic === "string" &&
+      item.arabic
+    )
+    .map((item) => ({
+      id: item.id,
+      arabic: item.arabic,
+      translations: normalizeLocalizedText(item.translations),
+      speechKeyId: typeof item.speechKeyId === "string" && item.speechKeyId ? item.speechKeyId : null,
+    }));
+}
