@@ -55,5 +55,6 @@ function normalizeSpeakItems(saved) {
       arabic: item.arabic,
       translations: normalizeLocalizedText(item.translations),
       speechKeyId: typeof item.speechKeyId === "string" && item.speechKeyId ? item.speechKeyId : null,
+      chunks: Array.isArray(item.chunks) ? item.chunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
     }));
 }
