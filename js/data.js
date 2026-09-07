@@ -53,6 +53,26 @@ const lessons = [
 [70,"دَفْع","Оплата","To‘lov",["د","ف","ع"],true,"assets/images/03A/18.jpg"],
 [71,"رِيَال","Риял","Riyol",["ر","ي","ا","ل"],true,"assets/images/03A/19.jpg"],
 [72,"بَاقِي","Сдача","Qaytim",["ب","ا","ق","ي"],true,"assets/images/03A/20.jpg"]
+], speechKeys: [
+{ id: "price", arabic: "بِكَم ...؟", translations: { ru: "Сколько стоит ...?", uz: "... qancha turadi?" } },
+{ id: "available", arabic: "فِيه ...؟", translations: { ru: "Есть ...?", uz: "... bormi?" } },
+{ id: "want", arabic: "أَبْغَى ...", translations: { ru: "Я хочу / мне ...", uz: "Men ... xohlayman / menga ... kerak" } },
+{ id: "have", arabic: "عِنْدَك ...؟", translations: { ru: "У тебя / у вас есть ...?", uz: "Sizda ... bormi?" } },
+{ id: "pay", arabic: "بَدْفَع ...", translations: { ru: "Я оплачу ...", uz: "Men ... bilan to‘layman" } },
+{ id: "where", arabic: "وَيْن ...؟", translations: { ru: "Где ...?", uz: "... qayerda?" } }
+], speak: [
+{ id: "03A-S01", arabic: "بِكَم هَذَا؟", translations: { ru: "Сколько это стоит?", uz: "Bu qancha turadi?" }, speechKeyId: "price" },
+{ id: "03A-S02", arabic: "فِيه خَصْم؟", translations: { ru: "Есть скидка?", uz: "Chegirma bormi?" }, speechKeyId: "available" },
+{ id: "03A-S03", arabic: "أَبْغَى هَذَا", translations: { ru: "Я хочу это", uz: "Men buni xohlayman" }, speechKeyId: "want" },
+{ id: "03A-S04", arabic: "أَبْغَى هَذِي", translations: { ru: "Я хочу это (ж.р.)", uz: "Men buni xohlayman" }, speechKeyId: "want" },
+{ id: "03A-S05", arabic: "عِنْدَك مَقَاس أَكْبَر؟", translations: { ru: "Есть размер побольше?", uz: "Kattaroq o‘lcham bormi?" }, speechKeyId: "have" },
+{ id: "03A-S06", arabic: "عِنْدَك مَقَاس أَصْغَر؟", translations: { ru: "Есть размер поменьше?", uz: "Kichikroq o‘lcham bormi?" }, speechKeyId: "have" },
+{ id: "03A-S07", arabic: "أَبْغَى كِيلُو مِن هَذَا", translations: { ru: "Мне килограмм этого", uz: "Menga bundan bir kilogramm kerak" }, speechKeyId: "want" },
+{ id: "03A-S08", arabic: "أَبْغَى حَبَّة وَاحْدَة", translations: { ru: "Мне одну штуку", uz: "Menga bittasi kerak" }, speechKeyId: "want" },
+{ id: "03A-S09", arabic: "أَبْغَى كِيس", translations: { ru: "Мне пакет", uz: "Menga paket kerak" }, speechKeyId: "want" },
+{ id: "03A-S10", arabic: "بَدْفَع بِالْبِطَاقَة", translations: { ru: "Я оплачу картой", uz: "Karta bilan to‘layman" }, speechKeyId: "pay" },
+{ id: "03A-S11", arabic: "بَدْفَع نَقْد", translations: { ru: "Я оплачу наличными", uz: "Naqd pul bilan to‘layman" }, speechKeyId: "pay" },
+{ id: "03A-S12", arabic: "وَيْن الكَاشِير؟", translations: { ru: "Где касса?", uz: "Kassa qayerda?" }, speechKeyId: "where" }
 ] }
 ].map((lesson) => ({ ...lesson, words: lesson.words.map(([id, arabic, ru, uz, letters, hasAudio = true, imageSrc]) => { const path = `assets/audio/words/word-${String(id).padStart(3, "0")}.mp3`; return { id, arabic, translations: { ru, uz }, letters, audio: hasAudio ? { src: path, expectedPath: path } : {}, image: imageSrc ? { src: imageSrc } : {} }; }) }));
 const allWords = lessons.flatMap((lesson) => lesson.words);
