@@ -35,7 +35,7 @@ function normalizeStageProgress(saved) {
     completed: source.completed === true,
     position: Number.isInteger(source.position) && source.position >= 0 ? source.position : 0,
     helpCount: Number.isInteger(source.helpCount) && source.helpCount >= 0 ? source.helpCount : 0,
-    mode: source.mode === "listenArabic" || source.mode === "listenChoice" ? source.mode : "listenRead",
+    mode: source.mode === "listenArabic" || source.mode === "listenChoice" || source.mode === "listenBuild" ? source.mode : "listenRead",
   };
 }
 
