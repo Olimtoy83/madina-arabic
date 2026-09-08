@@ -100,6 +100,25 @@ function normalizeUnderstandChoices(saved) {
       : [];
 }
 
+function normalizeUnderstandBuild(saved, answerArabic, answerChunks) {
+  if (!saved || typeof saved !== "object" || Array.isArray(saved) || !Array.isArray(saved.answerChunkIds) || !saved.answerChunkIds.length || !Array.isArray(saved.chunks)) return null;
+  if (!saved.answerChunkIds.every((id) => typeof id === "string" && id) || !saved.chunks.every((chunk) => chunk && typeof chunk === "object" && !Array.isArray(chunk) && typeof chunk.id === "string" && chunk.id && typeof chunk.arabic === "string" && chunk.arabic)) return null;
+
+  const chunks = saved.chunks.map((chunk) => ({ id: chunk.id, arabic: chunk.arabic }));
+  if (new Set(chunks.map((chunk) => chunk.id)).size !== chunks.length || new Set(chunks.map((chunk) => chunk.arabic)).size !== chunks.length || new Set(saved.answerChunkIds).size !== saved.answerChunkIds.length) return null;
+
+  const chunksById = new Map(chunks.map((chunk) => [chunk.id, chunk]));
+  const canonicalChunks = saved.answerChunkIds.map((id) => chunksById.get(id));
+  if (canonicalChunks.some((chunk) => !chunk)) return null;
+
+  const canonicalArabic = canonicalChunks.map((chunk) => chunk.arabic);
+  return canonicalArabic.join(" ") === answerArabic &&
+    canonicalArabic.length === answerChunks.length &&
+    canonicalArabic.every((chunk, index) => chunk === answerChunks[index])
+      ? { answerChunkIds: [...saved.answerChunkIds], chunks }
+      : null;
+}
+
 function normalizeUnderstandItems(saved) {
   if (!Array.isArray(saved)) return [];
 
@@ -115,14 +134,18 @@ function normalizeUnderstandItems(saved) {
       typeof item.answerArabic === "string" &&
       item.answerArabic
     )
-    .map((item) => ({
-      id: item.id,
-      questionArabic: item.questionArabic,
-      questionTranslations: normalizeLocalizedText(item.questionTranslations),
-      answerArabic: item.answerArabic,
-      answerTranslations: normalizeLocalizedText(item.answerTranslations),
-      answerChunks: Array.isArray(item.answerChunks) ? item.answerChunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
-      questionAudio: (() => { const audio=item.questionAudio&&typeof item.questionAudio==="object"&&!Array.isArray(item.questionAudio)?item.questionAudio:{};return {...(typeof audio.src==="string"&&audio.src?{src:audio.src}:{}),...(typeof audio.expectedPath==="string"&&audio.expectedPath?{expectedPath:audio.expectedPath}:{})}; })(),
-      choices: normalizeUnderstandChoices(item.choices),
-    }));
+    .map((item) => {
+      const answerChunks = Array.isArray(item.answerChunks) ? item.answerChunks.filter((chunk) => typeof chunk === "string" && chunk) : [];
+      return {
+        id: item.id,
+        questionArabic: item.questionArabic,
+        questionTranslations: normalizeLocalizedText(item.questionTranslations),
+        answerArabic: item.answerArabic,
+        answerTranslations: normalizeLocalizedText(item.answerTranslations),
+        answerChunks,
+        questionAudio: (() => { const audio=item.questionAudio&&typeof item.questionAudio==="object"&&!Array.isArray(item.questionAudio)?item.questionAudio:{};return {...(typeof audio.src==="string"&&audio.src?{src:audio.src}:{}),...(typeof audio.expectedPath==="string"&&audio.expectedPath?{expectedPath:audio.expectedPath}:{})}; })(),
+        choices: normalizeUnderstandChoices(item.choices),
+        build: normalizeUnderstandBuild(item.build, item.answerArabic, answerChunks),
+      };
+    });
 }
