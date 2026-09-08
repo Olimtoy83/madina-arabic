@@ -104,5 +104,6 @@ function normalizeUnderstandItems(saved) {
       answerArabic: item.answerArabic,
       answerTranslations: normalizeLocalizedText(item.answerTranslations),
       answerChunks: Array.isArray(item.answerChunks) ? item.answerChunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
+      questionAudio: (() => { const audio=item.questionAudio&&typeof item.questionAudio==="object"&&!Array.isArray(item.questionAudio)?item.questionAudio:{};return {...(typeof audio.src==="string"&&audio.src?{src:audio.src}:{}),...(typeof audio.expectedPath==="string"&&audio.expectedPath?{expectedPath:audio.expectedPath}:{})}; })(),
     }));
 }
