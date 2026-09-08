@@ -82,6 +82,24 @@ function normalizeExpandItems(saved) {
     }));
 }
 
+function normalizeUnderstandChoices(saved) {
+  if (!Array.isArray(saved) || saved.length !== 3) return [];
+  if (!saved.every((choice) => choice && typeof choice === "object" && !Array.isArray(choice) && typeof choice.id === "string" && choice.id && typeof choice.arabic === "string" && choice.arabic && typeof choice.correct === "boolean")) return [];
+
+  const choices = saved.map((choice) => ({
+    id: choice.id,
+    arabic: choice.arabic,
+    correct: choice.correct,
+  }));
+
+  return choices.filter((choice) => choice.id && choice.arabic).length === 3 &&
+    new Set(choices.map((choice) => choice.id)).size === 3 &&
+    new Set(choices.map((choice) => choice.arabic)).size === 3 &&
+    choices.filter((choice) => choice.correct).length === 1
+      ? choices
+      : [];
+}
+
 function normalizeUnderstandItems(saved) {
   if (!Array.isArray(saved)) return [];
 
@@ -105,5 +123,6 @@ function normalizeUnderstandItems(saved) {
       answerTranslations: normalizeLocalizedText(item.answerTranslations),
       answerChunks: Array.isArray(item.answerChunks) ? item.answerChunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
       questionAudio: (() => { const audio=item.questionAudio&&typeof item.questionAudio==="object"&&!Array.isArray(item.questionAudio)?item.questionAudio:{};return {...(typeof audio.src==="string"&&audio.src?{src:audio.src}:{}),...(typeof audio.expectedPath==="string"&&audio.expectedPath?{expectedPath:audio.expectedPath}:{})}; })(),
+      choices: normalizeUnderstandChoices(item.choices),
     }));
 }
