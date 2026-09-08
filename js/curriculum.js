@@ -82,6 +82,41 @@ function normalizeExpandItems(saved) {
     }));
 }
 
+const DIALOGUE_SPEAKERS = new Set(["interlocutor", "learner"]);
+
+function normalizeDialogueAudio(saved) {
+  if (saved == null) return {};
+  if (!saved || typeof saved !== "object" || Array.isArray(saved) || typeof saved.expectedPath !== "string" || !saved.expectedPath || "src" in saved) return null;
+  return { expectedPath: saved.expectedPath };
+}
+
+function normalizeDialogues(saved) {
+  if (!Array.isArray(saved)) return [];
+
+  const dialogues = saved.map((dialogue) => {
+    if (!dialogue || typeof dialogue !== "object" || Array.isArray(dialogue) || typeof dialogue.id !== "string" || !dialogue.id || typeof dialogue.context !== "string" || !dialogue.context || !Array.isArray(dialogue.turns) || !dialogue.turns.length) return null;
+    const translations = normalizeLocalizedText(dialogue.translations);
+    if (!translations.ru || !translations.uz) return null;
+
+    const turns = dialogue.turns.map((turn) => {
+      if (!turn || typeof turn !== "object" || Array.isArray(turn) || typeof turn.id !== "string" || !turn.id || !DIALOGUE_SPEAKERS.has(turn.speaker) || typeof turn.arabic !== "string" || !turn.arabic) return null;
+      const turnTranslations = normalizeLocalizedText(turn.translations), audio = normalizeDialogueAudio(turn.audio);
+      return turnTranslations.ru && turnTranslations.uz && audio !== null ? { id: turn.id, speaker: turn.speaker, arabic: turn.arabic, translations: turnTranslations, audio } : null;
+    });
+
+    if (turns.some((turn) => turn === null) || new Set(turns.map((turn) => turn.id)).size !== turns.length || new Set(turns.map((turn) => turn.audio.expectedPath).filter(Boolean)).size !== turns.filter((turn) => turn.audio.expectedPath).length) return null;
+    return { id: dialogue.id, context: dialogue.context, translations, turns };
+  });
+
+  const accepted = [], dialogueIds = new Set(), turnIds = new Set(), audioPaths = new Set();
+  dialogues.filter((dialogue) => dialogue !== null).forEach((dialogue) => {
+    const dialogueTurnIds = dialogue.turns.map((turn) => turn.id), dialogueAudioPaths = dialogue.turns.map((turn) => turn.audio.expectedPath).filter(Boolean);
+    if (dialogueIds.has(dialogue.id) || dialogueTurnIds.some((id) => turnIds.has(id)) || dialogueAudioPaths.some((path) => audioPaths.has(path))) return;
+    dialogueIds.add(dialogue.id); dialogueTurnIds.forEach((id) => turnIds.add(id)); dialogueAudioPaths.forEach((path) => audioPaths.add(path)); accepted.push(dialogue);
+  });
+  return accepted;
+}
+
 function normalizeUnderstandChoices(saved) {
   if (!Array.isArray(saved) || saved.length !== 3) return [];
   if (!saved.every((choice) => choice && typeof choice === "object" && !Array.isArray(choice) && typeof choice.id === "string" && choice.id && typeof choice.arabic === "string" && choice.arabic && typeof choice.correct === "boolean")) return [];

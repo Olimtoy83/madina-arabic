@@ -87,6 +87,29 @@ const lessons = [
 { id: "03A-E10", arabic: "مُمْكِن أَدْفَع نَقْد؟", translations: { ru: "Можно оплатить наличными?", uz: "Naqd pul bilan to‘lasam bo‘ladimi?" }, baseSpeakId: "03A-S11", addedArabic: "مُمْكِن أَدْفَع ...؟", chunks: ["مُمْكِن", "أَدْفَع", "نَقْد؟"] },
 { id: "03A-E11", arabic: "كَم البَاقِي؟", translations: { ru: "Сколько сдачи?", uz: "Qaytim qancha?" }, baseSpeakId: "03A-S01", addedArabic: "البَاقِي", chunks: ["كَم", "البَاقِي؟"] },
 { id: "03A-E12", arabic: "وَيْن أَدْفَع؟", translations: { ru: "Где оплатить?", uz: "Qayerda to‘layman?" }, baseSpeakId: "03A-S12", addedArabic: "أَدْفَع", chunks: ["وَيْن", "أَدْفَع؟"] }
+], dialogues: [
+{ id: "03A-D01", context: "priceDiscount", translations: { ru: "Цена и скидка", uz: "Narx va chegirma" }, turns: [
+{ id: "03A-D01-T01", speaker: "learner", arabic: "بِكَم هَذَا؟", translations: { ru: "Сколько это стоит?", uz: "Bu qancha turadi?" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D01-T01.mp3" } },
+{ id: "03A-D01-T02", speaker: "interlocutor", arabic: "بِخَمْسِين رِيَال", translations: { ru: "Пятьдесят риялов", uz: "Ellik riyol" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D01-T02.mp3" } },
+{ id: "03A-D01-T03", speaker: "learner", arabic: "فِيه خَصْم عَلَى هَذَا؟", translations: { ru: "На это есть скидка?", uz: "Bunga chegirma bormi?" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D01-T03.mp3" } },
+{ id: "03A-D01-T04", speaker: "interlocutor", arabic: "أَيْوَه، فِيه خَصْم عَشَرَة بِالمِيَّة", translations: { ru: "Да, скидка десять процентов", uz: "Ha, o‘n foiz chegirma bor" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D01-T04.mp3" } },
+{ id: "03A-D01-T05", speaker: "learner", arabic: "تَمَام، أَبْغَى هَذَا", translations: { ru: "Хорошо, я беру это", uz: "Yaxshi, men buni olaman" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D01-T05.mp3" } }
+] },
+{ id: "03A-D02", context: "size", translations: { ru: "Размер", uz: "O‘lcham" }, turns: [
+{ id: "03A-D02-T01", speaker: "learner", arabic: "عِنْدَك مَقَاس أَكْبَر؟", translations: { ru: "У вас есть размер побольше?", uz: "Kattaroq o‘lcham bormi?" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D02-T01.mp3" } },
+{ id: "03A-D02-T02", speaker: "interlocutor", arabic: "أَيْوَه، عِنْدِي", translations: { ru: "Да, есть", uz: "Ha, bor" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D02-T02.mp3" } },
+{ id: "03A-D02-T03", speaker: "learner", arabic: "مُمْكِن أَشُوفَه؟", translations: { ru: "Можно посмотреть?", uz: "Ko‘rsam bo‘ladimi?" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D02-T03.mp3" } },
+{ id: "03A-D02-T04", speaker: "interlocutor", arabic: "أَيْوَه، أَكِيد", translations: { ru: "Да, конечно", uz: "Ha, albatta" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D02-T04.mp3" } },
+{ id: "03A-D02-T05", speaker: "learner", arabic: "تَمَام، أَبْغَى هَذَا المَقَاس", translations: { ru: "Хорошо, мне нужен этот размер", uz: "Yaxshi, menga shu o‘lcham kerak" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D02-T05.mp3" } }
+] },
+{ id: "03A-D03", context: "checkout", translations: { ru: "Оплата", uz: "To‘lov" }, turns: [
+{ id: "03A-D03-T01", speaker: "interlocutor", arabic: "نَقْد وَلَّا بِطَاقَة؟", translations: { ru: "Наличными или картой?", uz: "Naqd pulmi yoki kartami?" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D03-T01.mp3" } },
+{ id: "03A-D03-T02", speaker: "learner", arabic: "بِالْبِطَاقَة، لَو سَمَحْت", translations: { ru: "Картой, пожалуйста", uz: "Karta bilan, iltimos" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D03-T02.mp3" } },
+{ id: "03A-D03-T03", speaker: "interlocutor", arabic: "تَبْغَى كِيس؟", translations: { ru: "Вам нужен пакет?", uz: "Paket kerakmi?" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D03-T03.mp3" } },
+{ id: "03A-D03-T04", speaker: "learner", arabic: "أَيْوَه، لَو سَمَحْت", translations: { ru: "Да, пожалуйста", uz: "Ha, iltimos" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D03-T04.mp3" } },
+{ id: "03A-D03-T05", speaker: "interlocutor", arabic: "تَمَام", translations: { ru: "Хорошо", uz: "Yaxshi" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D03-T05.mp3" } },
+{ id: "03A-D03-T06", speaker: "learner", arabic: "شُكْرًا", translations: { ru: "Спасибо", uz: "Rahmat" }, audio: { expectedPath: "assets/audio/dialogue/03A/03A-D03-T06.mp3" } }
+] }
 ], understand: [
 { id: "03A-U01", questionArabic: "إِيش تَبْغَى؟", questionTranslations: { ru: "Что вы хотите?", uz: "Nima xohlaysiz?" }, answerArabic: "أَبْغَى هَذَا، لَو سَمَحْت", answerTranslations: { ru: "Я хочу это, пожалуйста", uz: "Men buni xohlayman, iltimos" }, answerChunks: ["أَبْغَى", "هَذَا،", "لَو سَمَحْت"], build: { answerChunkIds: ["03A-U01-B1", "03A-U01-B2", "03A-U01-B3"], chunks: [{ id: "03A-U01-B1", arabic: "أَبْغَى" }, { id: "03A-U01-B2", arabic: "هَذَا،" }, { id: "03A-U01-B3", arabic: "لَو سَمَحْت" }, { id: "03A-U01-B4", arabic: "عِنْدِي" }, { id: "03A-U01-B5", arabic: "هُنَاك" }] }, choices: [{ id: "03A-U01-C1", arabic: "أَبْغَى هَذَا، لَو سَمَحْت", correct: true }, { id: "03A-U01-C2", arabic: "بِالْبِطَاقَة، لَو سَمَحْت", correct: false }, { id: "03A-U01-C3", arabic: "أَيْوَه، عِنْدِي", correct: false }] },
 { id: "03A-U02", questionArabic: "بِكَم هَذَا؟", questionTranslations: { ru: "Сколько это стоит?", uz: "Bu qancha turadi?" }, answerArabic: "بِعِشْرِين رِيَال", answerTranslations: { ru: "Двадцать риялов", uz: "Yigirma riyol" }, answerChunks: ["بِعِشْرِين", "رِيَال"], build: { answerChunkIds: ["03A-U02-B1", "03A-U02-B2"], chunks: [{ id: "03A-U02-B1", arabic: "بِعِشْرِين" }, { id: "03A-U02-B2", arabic: "رِيَال" }, { id: "03A-U02-B3", arabic: "حَبَّتَيْن" }, { id: "03A-U02-B4", arabic: "كِيلُو" }] }, choices: [{ id: "03A-U02-C1", arabic: "بِعِشْرِين رِيَال", correct: true }, { id: "03A-U02-C2", arabic: "أَبْغَى حَبَّتَيْن", correct: false }, { id: "03A-U02-C3", arabic: "هُنَاك", correct: false }] },
