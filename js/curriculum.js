@@ -81,3 +81,28 @@ function normalizeExpandItems(saved) {
       chunks: Array.isArray(item.chunks) ? item.chunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
     }));
 }
+
+function normalizeUnderstandItems(saved) {
+  if (!Array.isArray(saved)) return [];
+
+  return saved
+    .filter((item) =>
+      item &&
+      typeof item === "object" &&
+      !Array.isArray(item) &&
+      typeof item.id === "string" &&
+      item.id &&
+      typeof item.questionArabic === "string" &&
+      item.questionArabic &&
+      typeof item.answerArabic === "string" &&
+      item.answerArabic
+    )
+    .map((item) => ({
+      id: item.id,
+      questionArabic: item.questionArabic,
+      questionTranslations: normalizeLocalizedText(item.questionTranslations),
+      answerArabic: item.answerArabic,
+      answerTranslations: normalizeLocalizedText(item.answerTranslations),
+      answerChunks: Array.isArray(item.answerChunks) ? item.answerChunks.filter((chunk) => typeof chunk === "string" && chunk) : [],
+    }));
+}
