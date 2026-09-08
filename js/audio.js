@@ -2,7 +2,11 @@ class AudioPlaybackController {
   constructor(onStateChange) {
     this.onStateChange = onStateChange;
     this.audio = null;
+    this.playbackRate = 1;
   }
+
+  setPlaybackRate(rate) { this.playbackRate = rate === 0.75 ? 0.75 : 1; if (this.audio) this.audio.playbackRate = this.playbackRate; return this.playbackRate; }
+  getPlaybackRate() { return this.playbackRate; }
 
   play(source) {
     this.stop();
@@ -14,6 +18,8 @@ class AudioPlaybackController {
 
     const audio = new Audio(source);
     this.audio = audio;
+    audio.playbackRate = this.playbackRate;
+    if ("preservesPitch" in audio) audio.preservesPitch = true;
     this.onStateChange("loading");
 
     audio.addEventListener("playing", () => this.isCurrent(audio) && this.onStateChange("playing"));

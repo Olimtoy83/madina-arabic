@@ -1,5 +1,20 @@
 const STORAGE_KEY = "madina-arabic-learning-progress";
+const AUDIO_PLAYBACK_RATE_STORAGE_KEY = "madina-arabic-audio-playback-rate";
 const STORAGE_VERSION = 3;
+
+function normalizeAudioPlaybackRate(rate) {
+  return rate === 0.75 || rate === "0.75" ? 0.75 : 1;
+}
+
+function getAudioPlaybackRate() {
+  return normalizeAudioPlaybackRate(localStorage.getItem(AUDIO_PLAYBACK_RATE_STORAGE_KEY));
+}
+
+function setAudioPlaybackRate(rate) {
+  const normalized = normalizeAudioPlaybackRate(rate);
+  localStorage.setItem(AUDIO_PLAYBACK_RATE_STORAGE_KEY, String(normalized));
+  return normalized;
+}
 
 function getLocalDate() {
   const date = new Date();
