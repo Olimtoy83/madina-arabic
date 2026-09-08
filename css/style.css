@@ -204,4 +204,5 @@ h2 { font-weight:700; }
 .understand-meaning { color:var(--text-secondary); font-size:15px; line-height:1.45; }
 .understand-stage-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-2); }
 .understand-stage-actions > button { min-width:0; }
+.understand-mode { display:flex; gap:var(--space-1); padding:var(--space-1); border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--surface-soft); }.understand-mode-option { flex:1 1 0; min-width:0; min-height:40px; padding:var(--space-2); border:0; border-radius:var(--radius-sm); color:var(--text-secondary); background:transparent; font-weight:700; cursor:pointer; overflow-wrap:anywhere; }.understand-mode-option[aria-pressed='true'] { color:var(--madina-green-dark); background:var(--surface-primary); }.understand-mode-option:focus-visible { outline:3px solid var(--focus-ring); outline-offset:2px; }
 @media (max-width:340px) { .topic-stage-nav { grid-template-columns:1fr; } }
