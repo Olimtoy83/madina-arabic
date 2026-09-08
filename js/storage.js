@@ -29,14 +29,14 @@ function normalizeWordIds(value) {
   return Array.isArray(value) ? [...new Set(value.filter((id) => allWords.some((word) => word.id === id)))] : [];
 }
 
-function normalizeStageProgress(saved) {
+function normalizeStageProgress(saved, stageId) {
   const source = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
   return {
     completed: source.completed === true,
     position: Number.isInteger(source.position) && source.position >= 0 ? source.position : 0,
     turnPosition: Number.isInteger(source.turnPosition) && source.turnPosition >= 0 ? source.turnPosition : 0,
     helpCount: Number.isInteger(source.helpCount) && source.helpCount >= 0 ? source.helpCount : 0,
-    mode: source.mode === "listenArabic" || source.mode === "listenChoice" || source.mode === "listenBuild" ? source.mode : "listenRead",
+    mode: stageId === "dialogue" ? (source.mode === "dialogueArabic" ? "dialogueArabic" : "dialogueRead") : (source.mode === "listenArabic" || source.mode === "listenChoice" || source.mode === "listenBuild" ? source.mode : "listenRead"),
   };
 }
 
@@ -66,7 +66,7 @@ function normalizeTopicProgress(saved) {
         const stages = Object.fromEntries(
           LEARNING_STAGE_IDS.map((stageId) => [
             stageId,
-            normalizeStageProgress(sourceStages[stageId]),
+            normalizeStageProgress(sourceStages[stageId], stageId),
           ])
         );
 
@@ -130,7 +130,7 @@ function updateTopicStageProgress(progress, lessonId, stageId, patch) {
   topic.stages[stageId] = normalizeStageProgress({
     ...topic.stages[stageId],
     ...sourcePatch,
-  });
+  }, stageId);
 
   return true;
 }
