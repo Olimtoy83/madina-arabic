@@ -117,6 +117,29 @@ function normalizeDialogues(saved) {
   return accepted;
 }
 
+function normalizePracticeScenarios(saved) {
+  if (!Array.isArray(saved)) return [];
+
+  const isLocalized = (value) => value && typeof value === "object" && !Array.isArray(value) && typeof value.ru === "string" && value.ru && typeof value.uz === "string" && value.uz;
+  const scenarios = saved.map((scenario) => {
+    if (!scenario || typeof scenario !== "object" || Array.isArray(scenario) || typeof scenario.id !== "string" || !scenario.id || !isLocalized(scenario.titles) || !isLocalized(scenario.goal) || !Array.isArray(scenario.steps)) return null;
+    const steps = scenario.steps.map((step) => {
+      if (!step || typeof step !== "object" || Array.isArray(step) || typeof step.id !== "string" || !step.id || typeof step.intentId !== "string" || !step.intentId || !Array.isArray(step.responses)) return null;
+      const responses = step.responses.filter((response) => response && typeof response === "object" && !Array.isArray(response) && typeof response.id === "string" && response.id && typeof response.arabic === "string" && response.arabic && isLocalized(response.translations)).map((response) => ({ id: response.id, arabic: response.arabic, translations: normalizeLocalizedText(response.translations) }));
+      return responses.length && new Set(responses.map((response) => response.id)).size === responses.length ? { id: step.id, intentId: step.intentId, responses } : null;
+    }).filter(Boolean);
+    return steps.length && new Set(steps.map((step) => step.id)).size === steps.length ? { id: scenario.id, titles: normalizeLocalizedText(scenario.titles), goal: normalizeLocalizedText(scenario.goal), steps } : null;
+  }).filter(Boolean);
+
+  const accepted = [], scenarioIds = new Set(), stepIds = new Set(), responseIds = new Set();
+  scenarios.forEach((scenario) => {
+    const scenarioStepIds = scenario.steps.map((step) => step.id), scenarioResponseIds = scenario.steps.flatMap((step) => step.responses.map((response) => response.id));
+    if (scenarioIds.has(scenario.id) || scenarioStepIds.some((id) => stepIds.has(id)) || scenarioResponseIds.some((id) => responseIds.has(id))) return;
+    scenarioIds.add(scenario.id); scenarioStepIds.forEach((id) => stepIds.add(id)); scenarioResponseIds.forEach((id) => responseIds.add(id)); accepted.push(scenario);
+  });
+  return accepted;
+}
+
 function normalizeUnderstandChoices(saved) {
   if (!Array.isArray(saved) || saved.length !== 3) return [];
   if (!saved.every((choice) => choice && typeof choice === "object" && !Array.isArray(choice) && typeof choice.id === "string" && choice.id && typeof choice.arabic === "string" && choice.arabic && typeof choice.correct === "boolean")) return [];
