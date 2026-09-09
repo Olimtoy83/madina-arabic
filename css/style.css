@@ -319,3 +319,178 @@ h2 { font-weight:700; }
   .topic-stage-nav { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); overflow:visible; }
   .topic-stage { flex:auto; min-width:0; min-height:72px; padding:var(--space-3); }
 }
+
+/* Stage 4B — focused learning hierarchy for Words, Speak, and Expand. */
+.word-card {
+  display:grid;
+  justify-items:center;
+  gap:var(--space-3);
+  padding:var(--space-5) var(--space-4);
+}
+.word-card > * { min-width:0; }
+.word-position,.speak-stage-position,.expand-stage-position {
+  margin:0;
+  color:var(--text-secondary);
+  font-size:var(--font-metadata);
+  font-weight:750;
+}
+.word-illustration {
+  width:min(100%,340px);
+  margin:0;
+  border-color:var(--border-strong);
+  box-shadow:none;
+}
+#arabic-word {
+  margin:0;
+  color:var(--text-primary);
+  font-size:clamp(48px,14vw,68px);
+  line-height:1.45;
+}
+#translation {
+  max-width:34rem;
+  margin:0;
+  color:var(--text-secondary);
+  font-size:var(--font-body);
+  line-height:1.45;
+}
+.word-card .pronunciation {
+  width:min(100%,390px);
+  margin:0;
+}
+.word-card .audio-controls {
+  padding:var(--space-1);
+  border:1px solid var(--border-default);
+  border-radius:var(--radius-md);
+  background:var(--surface-soft);
+}
+.word-card .audio-button {
+  background:var(--surface-primary);
+}
+.word-card .audio-rate {
+  background:var(--surface-primary);
+}
+.word-card #start-builder {
+  min-height:44px;
+  padding:var(--space-2) var(--space-3);
+  color:var(--text-secondary);
+  background:var(--surface-soft);
+}
+.learning-actions {
+  align-items:stretch;
+  margin-top:var(--space-3);
+}
+.learning-actions #next-word {
+  box-shadow:0 6px 14px rgba(22,116,82,.18);
+}
+.learning-actions #repeat-word {
+  border-color:var(--border-strong);
+  color:var(--text-primary);
+  background:var(--surface-primary);
+  box-shadow:none;
+}
+
+.speak-stage-shell,.expand-stage-shell {
+  padding:var(--space-5) var(--space-4);
+}
+.speak-stage-card {
+  gap:var(--space-3);
+}
+.speak-stage-phrase {
+  margin:var(--space-1) 0 0;
+  font-size:clamp(38px,12vw,56px);
+  line-height:1.4;
+}
+.speak-stage-meaning {
+  max-width:34rem;
+  justify-self:center;
+  font-size:var(--font-body);
+}
+.speak-key {
+  gap:2px;
+  padding:var(--space-2) var(--space-3);
+  border-color:var(--border-default);
+  background:var(--surface-soft);
+  box-shadow:none;
+}
+.speak-key-label { color:var(--text-secondary); }
+.speak-key-arabic { font-size:22px; }
+.speak-key-meaning { font-size:var(--font-support); }
+.speak-key-details {
+  padding:var(--space-3);
+  background:var(--surface-soft);
+  box-shadow:none;
+}
+.speak-practice-trigger,.expand-practice-trigger {
+  min-height:44px;
+  color:var(--text-secondary);
+  background:var(--surface-soft);
+}
+.speak-stage-actions,.expand-stage-actions {
+  margin-top:var(--space-1);
+}
+
+.expand-stage-card {
+  gap:var(--space-3);
+}
+.expand-part {
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+}
+.expand-base {
+  gap:2px;
+  padding-left:var(--space-3);
+  border-left:3px solid var(--border-strong);
+}
+.expand-base .expand-label { color:var(--text-secondary); }
+.expand-base-arabic {
+  font-size:22px;
+}
+.expand-base .expand-meaning { font-size:var(--font-support); }
+.expand-added {
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:baseline;
+  gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);
+  border:1px solid var(--border-strong);
+  border-radius:var(--radius-md);
+  background:var(--surface-success);
+}
+.expand-added .expand-label { color:var(--madina-green-dark); }
+.expand-added-arabic {
+  font-size:24px;
+}
+.expand-phrase {
+  gap:var(--space-2);
+  padding:var(--space-5) var(--space-4);
+  border:2px solid var(--color-primary);
+  border-radius:var(--radius-lg);
+  background:var(--surface-primary);
+  box-shadow:var(--shadow-soft);
+}
+.expand-phrase .expand-label { text-align:center; }
+.expand-stage-phrase {
+  font-size:clamp(40px,12vw,58px);
+  line-height:1.4;
+}
+.expand-phrase .expand-meaning {
+  font-size:var(--font-body);
+}
+
+@media (max-width:380px) {
+  .word-card,.speak-stage-shell,.expand-stage-shell { padding:var(--space-4) var(--space-3); }
+  .word-card .audio-controls { flex-wrap:wrap; }
+  .word-card .audio-button { flex:1 1 100%; }
+  .word-card .audio-rate { flex:1 1 100%; }
+  .word-card .audio-rate-option { flex:1 1 50%; }
+  .expand-added { grid-template-columns:1fr; }
+}
+
+@media (min-width:768px) {
+  .word-card { padding:var(--space-6); }
+  .word-illustration { width:min(100%,380px); }
+  .speak-stage-shell,.expand-stage-shell { padding:var(--space-6); }
+  .speak-stage-phrase { font-size:var(--font-arabic-hero); }
+  .expand-stage-phrase { font-size:var(--font-arabic-hero); }
+}
