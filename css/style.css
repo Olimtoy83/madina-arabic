@@ -494,3 +494,187 @@ h2 { font-weight:700; }
   .speak-stage-phrase { font-size:var(--font-arabic-hero); }
   .expand-stage-phrase { font-size:var(--font-arabic-hero); }
 }
+
+/* Stage 5B — focused listening and response hierarchy for Understand. */
+.understand-stage-shell {
+  padding:var(--space-5) var(--space-4);
+}
+.understand-stage-card {
+  gap:var(--space-4);
+}
+.understand-stage-position {
+  margin:0;
+  color:var(--text-secondary);
+  font-size:var(--font-metadata);
+  font-weight:750;
+}
+.understand-question {
+  gap:var(--space-3);
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+}
+.understand-question > .understand-label {
+  color:var(--text-secondary);
+}
+.understand-mode {
+  flex-wrap:wrap;
+  gap:var(--space-1);
+  padding:var(--space-1);
+  border-radius:var(--radius-md);
+}
+.understand-mode-option {
+  flex:1 1 126px;
+  min-height:44px;
+  padding:var(--space-2) var(--space-3);
+  border:1px solid transparent;
+  font-size:var(--font-support);
+  font-weight:750;
+}
+.understand-mode-option[aria-pressed='true'] {
+  border-color:var(--border-strong);
+  box-shadow:inset 0 -3px 0 currentColor;
+}
+.understand-question-arabic {
+  font-size:clamp(32px,10vw,46px);
+  line-height:1.4;
+}
+.understand-question .understand-meaning {
+  max-width:34rem;
+  font-size:var(--font-body);
+}
+.understand-pronunciation {
+  width:min(100%,390px);
+}
+.understand-pronunciation .audio-controls {
+  padding:var(--space-1);
+  border:1px solid var(--border-default);
+  border-radius:var(--radius-md);
+  background:var(--surface-soft);
+}
+.understand-pronunciation .audio-button,
+.understand-pronunciation .audio-rate {
+  background:var(--surface-primary);
+}
+.understand-answer {
+  gap:var(--space-2);
+  padding:var(--space-3) var(--space-4);
+  border-color:var(--border-strong);
+  background:var(--surface-success);
+}
+.understand-answer-arabic {
+  font-size:clamp(28px,8vw,38px);
+}
+
+.understand-choice,
+.understand-build {
+  gap:var(--space-3);
+  margin-top:var(--space-1);
+  padding:var(--space-4);
+  border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg);
+  background:var(--surface-primary);
+  box-shadow:var(--shadow-soft);
+}
+.understand-choice-instruction,
+.understand-build-instruction {
+  color:var(--text-primary);
+  font-size:var(--font-body);
+  font-weight:750;
+}
+.understand-choice-options {
+  gap:var(--space-2);
+}
+.understand-choice-option {
+  display:flex;
+  min-height:56px;
+  align-items:center;
+  justify-content:flex-end;
+  padding:var(--space-3) var(--space-4);
+  border-color:var(--border-strong);
+  font-size:clamp(22px,7vw,28px);
+  line-height:1.4;
+}
+.understand-choice-option[aria-pressed='true'] {
+  border-width:2px;
+  font-weight:700;
+}
+.understand-choice-option.is-incorrect {
+  border-color:#c9907b;
+  background:#fff8f5;
+}
+.understand-choice-option.is-correct {
+  border-color:var(--color-primary);
+  background:var(--surface-success);
+}
+.understand-choice-help {
+  min-height:44px;
+  padding:var(--space-2) var(--space-3);
+  border-color:var(--border-default);
+  color:var(--text-secondary);
+  background:var(--surface-soft);
+}
+.understand-choice-help:disabled {
+  opacity:.7;
+}
+.understand-choice-feedback,
+.understand-build-feedback {
+  min-height:20px;
+  margin:0;
+  font-size:var(--font-support);
+  font-weight:750;
+}
+.understand-choice-feedback.is-correct,
+.understand-build-feedback.is-success {
+  color:var(--madina-green-dark);
+}
+.understand-build-feedback:not(:empty):not(.is-success) {
+  color:var(--danger);
+}
+.understand-choice-answer,
+.understand-build-meaning {
+  padding-top:var(--space-2);
+  border-top:1px solid var(--border-default);
+}
+
+.understand-build-answer {
+  min-height:64px;
+  padding:var(--space-3);
+  border-color:var(--border-strong);
+  background:var(--surface-soft);
+}
+.understand-build-options {
+  gap:var(--space-2);
+}
+.understand-build-chunk {
+  min-height:48px;
+  padding:var(--space-2) var(--space-3);
+  border-color:var(--border-strong);
+  font-size:clamp(20px,6vw,24px);
+}
+.understand-build-answer .understand-build-chunk {
+  border-color:var(--color-primary);
+}
+#understand-build-check {
+  min-height:48px;
+  justify-self:start;
+}
+.understand-stage-actions {
+  margin-top:calc(var(--space-1) * -1);
+}
+
+@media (max-width:380px) {
+  .understand-stage-shell { padding:var(--space-4) var(--space-3); }
+  .understand-choice,.understand-build { padding:var(--space-3); }
+  .understand-pronunciation .audio-controls { flex-wrap:wrap; }
+  .understand-pronunciation .audio-button { flex:1 1 100%; }
+  .understand-pronunciation .audio-rate { flex:1 1 100%; }
+  .understand-pronunciation .audio-rate-option { flex:1 1 50%; }
+}
+
+@media (min-width:768px) {
+  .understand-stage-shell { padding:var(--space-6); }
+  .understand-question-arabic { font-size:var(--font-arabic-phrase); }
+  .understand-choice,.understand-build { padding:var(--space-5); }
+}
