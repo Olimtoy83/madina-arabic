@@ -939,3 +939,100 @@ h2 { font-weight:700; }
   .practice-instruction { padding:var(--space-5); }
   .practice-response { padding:var(--space-5); }
 }
+
+/* Stage 9B - intentional desktop Home context and lesson modules. */
+@media (min-width:1024px) {
+  #home-screen {
+    grid-template-columns:minmax(360px,.9fr) minmax(0,1.25fr);
+    column-gap:var(--space-8);
+  }
+
+  #home-screen > .home-context {
+    padding:var(--space-8);
+    border:1px solid var(--border-default);
+    border-radius:var(--radius-major);
+    background:var(--surface-soft);
+    box-shadow:var(--shadow-soft);
+  }
+
+  #home-screen .home-context h1 {
+    max-width:12ch;
+    font-size:clamp(36px,4vw,52px);
+    line-height:1.08;
+  }
+
+  #home-screen .home-context .intro {
+    max-width:32rem;
+    font-size:17px;
+  }
+
+  #home-screen .continue-button {
+    min-height:60px;
+    margin-top:var(--space-2);
+  }
+
+  #home-screen .summary-card {
+    padding:var(--space-4);
+    border-color:var(--border-strong);
+    background:var(--surface-primary);
+  }
+
+  #home-screen > .lessons-section {
+    display:grid;
+    align-content:start;
+    gap:var(--space-3);
+  }
+
+  #home-screen .section-heading {
+    margin:0;
+  }
+
+  #home-screen .lesson-list {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:var(--space-3);
+  }
+
+  #home-screen .lesson-card {
+    min-height:142px;
+    align-content:start;
+    gap:var(--space-2);
+    padding:var(--space-4);
+    border-color:var(--border-default);
+    background:var(--surface-primary);
+  }
+
+  #home-screen .lesson-card.is-current {
+    border-width:2px;
+    background:var(--surface-success);
+  }
+
+  #home-screen .lesson-card.is-completed {
+    border-color:var(--border-strong);
+    background:var(--surface-soft);
+  }
+
+  #home-screen .lesson-card strong {
+    font-size:18px;
+    line-height:1.25;
+  }
+
+  #home-screen .lesson-card-progress {
+    margin-top:auto;
+  }
+}
+
+@media (min-width:1280px) {
+  #home-screen {
+    grid-template-columns:minmax(400px,.9fr) minmax(0,1.3fr);
+    column-gap:48px;
+  }
+
+  #home-screen > .home-context {
+    padding:40px;
+  }
+
+  #home-screen .lesson-card {
+    min-height:152px;
+    padding:var(--space-5);
+  }
+}
