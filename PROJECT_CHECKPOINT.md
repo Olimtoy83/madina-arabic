@@ -4,10 +4,52 @@
 
 - Repository: `madina-arabic`
 - Branch: `main`
-- Verified baseline before Visual Vocabulary 03A documentation: `8219df2`
+- Current verified baseline: `f8010fecea1a0d5f389bf374c0388126a711f043` (`style(arabic): polish home and stage navigation`)
 - Upstream: `origin/main`
 - Remote: `https://github.com/Olimtoy83/madina-arabic.git`
 - Latest accepted content stage: `MADINA ARABIC Visual Vocabulary 03A — Магазин и покупки / ДЎКОН ВА ХАРИДЛАР`
+- Latest accepted UI/UX stage: `UI Stage 3B — Home, Lesson Context & Stage Navigation`
+
+## UI/UX checkpoint — through Stage 3B
+
+### Accepted stages
+
+- UI/UX Audit Stage 1 — **ACCEPTED**.
+- UI Stage 2A, Design Tokens, Global Shell & Typography Contract — **ACCEPTED**.
+- UI Stage 2B, Global UI Foundation — **ACCEPTED & PUSHED**: `0178b258f8050ea69df489bc8bc31fe2681a9e6d` (`style(arabic): establish global ui foundation`).
+- UI Stage 3A, Home, Lesson Context & Stage Navigation Contract — **ACCEPTED**.
+- UI Stage 3B, Home, Lesson Context & Stage Navigation Implementation — **ACCEPTED & PUSHED**: `f8010fecea1a0d5f389bf374c0388126a711f043` (`style(arabic): polish home and stage navigation`).
+
+### Accepted foundation and interaction decisions
+
+- Madina Green, Warm Cream, and Charcoal are expressed through semantic tokens, restrained surfaces/shadows, shared focus-visible treatment, and reduced-motion support.
+- The application frame is responsive: up to `1120px` on desktop, with a focused learning body up to `680px`; lesson context may use wider desktop space when appropriate.
+- Arabic remains visually dominant. The direction is a minimum 44px control/touch target and one dominant CTA per active learner state.
+- Home prioritizes Continue/Start Learning and coherent current-learning context. Lesson browsing is secondary; streak/XP are retained but visually demoted; RU/UZ remains global. Desktop uses a restrained two-area Home at `1024px+`; mobile/tablet remain single-column.
+- Lesson context is compact. Global progress belongs on Home; current-stage context belongs above the learning body; item and Practice scenario/step progress stay with their relevant bodies.
+- Stage navigation retains `01–06` (Words, Speak, Expand, Understand, Dialogue, Practice): mobile/tablet use a horizontally scrollable progressive rail; desktop uses six-step progressive navigation. `aria-current="step"`, content-driven availability, disabled unavailable stages, and active-stage rail visibility are preserved. Completion is displayed only where persisted completion supports it; no mastery implication or hard-lock redesign was added.
+- Locale remains Russian and Uzbek Latin, with persisted selection, `aria-pressed` selected state, 44px targets, and no flag-based primary identifier.
+
+### QA evidence
+
+- Static automated QA — **PASS**.
+- Manual desktop browser QA — **PASS**: Home hierarchy, lesson context, desktop 01–06 stepper, and constrained learning body.
+- Manual mobile browser QA — **PASS**: Home, locale controls, mobile 01–06 rail, active/current stage, learning-card containment, and no observed page-level horizontal overflow.
+- These are manual browser checks, distinct from automated static checks; no automated browser QA is claimed.
+
+### Intentional deferred UI work
+
+- Learning-body redesigns for Words, Speak, Expand, Understand, Dialogue, and Practice.
+- Final icon migration, responsive/accessibility sweep, final visual acceptance, historical JS render-function technical debt, and 03B Mini App integration.
+
+### Next UI/UX roadmap
+
+1. UI Stage 4 — Words / Speak / Expand.
+2. UI Stage 5 — Understand.
+3. UI Stage 6 — Dialogue / Practice.
+4. UI Stage 7 — Responsive / Accessibility final sweep.
+5. UI Stage 8 — Final Visual Acceptance 03A.
+6. Only then: 03B Restaurant/Café Mini App integration.
 
 ## Completed functionality
 
