@@ -1036,3 +1036,150 @@ h2 { font-weight:700; }
     padding:var(--space-5);
   }
 }
+/* Stage 10C - beginner alphabet foundation shell. */
+.foundation-card {
+  display:grid;
+  min-width:0;
+  gap:var(--space-3);
+  padding:var(--space-4);
+  border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg);
+  background:var(--surface-primary);
+}
+
+.foundation-card .eyebrow,
+.foundation-card h2,
+.foundation-card p {
+  margin:0;
+}
+
+.foundation-arabic {
+  color:var(--color-primary);
+  font-family:"Times New Roman",serif;
+  font-size:clamp(32px,10vw,44px);
+  line-height:1.35;
+  text-align:left;
+  overflow-wrap:anywhere;
+}
+
+.foundation-card h2 {
+  color:var(--text-primary);
+  font-size:22px;
+  line-height:1.25;
+}
+
+.foundation-description {
+  color:var(--text-secondary);
+  font-size:var(--font-support);
+  line-height:1.5;
+}
+
+#open-alphabet {
+  width:100%;
+}
+
+#alphabet-screen {
+  min-width:0;
+  max-width:760px;
+  margin:0 auto;
+}
+
+.alphabet-meta {
+  display:grid;
+  min-width:0;
+  gap:var(--space-2);
+  margin-bottom:var(--space-5);
+}
+
+.alphabet-meta .eyebrow,
+.alphabet-meta h1,
+.alphabet-meta .intro {
+  margin:0;
+}
+
+.alphabet-lesson-list {
+  display:grid;
+  min-width:0;
+  gap:var(--space-2);
+}
+
+.alphabet-lesson-card {
+  display:grid;
+  min-width:0;
+  grid-template-columns:auto minmax(90px,.55fr) minmax(0,1fr);
+  align-items:center;
+  gap:var(--space-3);
+  padding:var(--space-3) var(--space-4);
+  border:1px solid var(--border-default);
+  border-radius:var(--radius-md);
+  background:var(--surface-primary);
+}
+
+.alphabet-lesson-code {
+  color:var(--color-primary);
+  font-size:var(--font-metadata);
+  font-weight:800;
+}
+
+.alphabet-lesson-preview {
+  min-width:0;
+  color:var(--text-primary);
+  font-family:"Times New Roman",serif;
+  font-size:28px;
+  line-height:1.35;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
+
+.alphabet-lesson-title {
+  min-width:0;
+  color:var(--text-primary);
+  font-size:16px;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+
+@media (max-width:380px) {
+  .foundation-card {
+    padding:var(--space-3);
+  }
+
+  .alphabet-lesson-card {
+    grid-template-columns:auto minmax(0,1fr);
+    gap:var(--space-2) var(--space-3);
+    padding:var(--space-3);
+  }
+
+  .alphabet-lesson-preview {
+    grid-column:2;
+    grid-row:1;
+    font-size:26px;
+  }
+
+  .alphabet-lesson-title {
+    grid-column:1 / -1;
+    grid-row:2;
+  }
+}
+
+@media (min-width:768px) {
+  .alphabet-lesson-list {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:var(--space-3);
+  }
+
+  .alphabet-lesson-card {
+    grid-template-columns:auto minmax(0,1fr);
+    align-content:center;
+    min-height:112px;
+  }
+
+  .alphabet-lesson-preview {
+    grid-column:2;
+    font-size:30px;
+  }
+
+  .alphabet-lesson-title {
+    grid-column:1 / -1;
+  }
+}
